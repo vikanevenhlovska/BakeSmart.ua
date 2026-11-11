@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BakeSmart.ua</title>
+<meta name="description" content="BakeSmart.ua – українська платформа для випічки: рецепти, пошук за інгредієнтами та калькулятор форм.">
+<script>(function(){var t;try{t=localStorage.getItem('bs-theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})()</script>
+<link rel="icon" href="assets/images/logo.svg">
+<link rel="preload" as="image" href="assets/images/hero.jpg" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="4.5" y="3.5" width="15" height="17" rx="2.5"/><path d="M8 8h8M8.5 12.5h1M12 12.5h1M15.5 12.5h.5M8.5 16.5h1M12 16.5h1M15.5 16.5h.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-level" viewBox="0 0 24 24"><path d="M6 19v-4M12 19v-8M18 19V5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="i-arrow-d" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3.5a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.2h5c0-.9.4-1.6 1.1-2.2A6 6 0 0 0 12 3.5z"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4.5l9 15.5H3l9-15.5zM12 10v4.5M12 17.2v.1"/></symbol>
+  <symbol id="i-sync" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-13.7 5.6M4 12a8 8 0 0 1 13.7-5.6M18 3v4h-4M6 21v-4h4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s6.5-5.6 6.5-11a6.5 6.5 0 0 0-13 0c0 5.4 6.5 11 6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7.5l8 6 8-6"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M10.2 8.8l5 3.2-5 3.2z"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11M4.5 6.5h.1M4.5 12h.1M4.5 17.5h.1"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Перейти до змісту</a>
+
+<header class="header">
+  <div class="wrap header__in">
+    <a class="logo" href="#top" aria-label="BakeSmart.ua, на початок сторінки"><img src="assets/images/logo-mark.svg" alt="" width="520" height="510" fetchpriority="high"><span class="logo__name">BakeSmart.ua</span></a>
+    <nav class="nav" id="nav" aria-label="Основна навігація">
+      <a class="nav__link" href="#hero-search">Що є вдома?</a>
+      <a class="nav__link" href="#recipes">Рецепти</a>
+      <a class="nav__link" href="#calculator">Калькулятор</a>
+      <a class="nav__link" href="#guide">Продукти</a>
+    </nav>
+    <div class="nav__right">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Темна тема"><svg class="ico i-moon" aria-hidden="true"><use href="#i-moon"/></svg><svg class="ico i-sun" aria-hidden="true"><use href="#i-sun"/></svg></button>
+      <a class="btn btn--sm" id="account-link" href="#account">Увійти</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="nav" aria-label="Відкрити меню"><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="h1">
+    <div class="hero__media" role="img" aria-label="Мисочка з борошном, з якого здіймається хмара борошна, поруч дерев'яні ложки та вінчик">
+      <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/images/hero.jpg" aria-hidden="true" tabindex="-1"><source src="assets/video/video_content.mp4" type="video/mp4"></video>
+    </div>
+    <div class="wrap hero__in">
+      <div class="hero__copy">
+        <h1 id="h1">Ідеальна випічка з першої спроби, без складних розрахунків</h1>
+        <p class="hero__lead">Українська платформа з точним калькулятором форм, розумним пошуком за інгредієнтами з холодильника та перевіреними human-tested рецептами.</p>
+
+        <form class="search" id="hero-search" autocomplete="off" aria-labelledby="search-title" style="scroll-margin-top:100px">
+          <label class="search__title" for="ing-input" id="search-title"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>Що є вдома?</label>
+          <div class="search__row">
+            <input class="field" id="ing-input" type="text" list="ing-list" placeholder="Наприклад: борошно, яйця, молоко" aria-describedby="ing-help">
+            <button class="btn btn--ghost" type="submit" id="ing-add">Додати</button>
+          </div>
+          <datalist id="ing-list">
+            <option value="Борошно"><option value="Яйця"><option value="Молоко"><option value="Цукор"><option value="Масло"><option value="Яблука"><option value="Шоколад"><option value="Дріжджі"><option value="Кориця"><option value="Мигдаль"><option value="Сир"><option value="Олія">
+          </datalist>
+          <p class="help" id="ing-help">Натисніть Enter або кому, щоб додати продукт. Можна додати кілька.</p>
+          <ul class="chips" id="chips" aria-label="Ваші продукти"></ul>
+          <div class="search__actions">
+            <button class="btn" type="button" id="find-btn">Підібрати рецепт</button>
+            <a class="link" href="#calculator">Або перерахуйте рецепт під свою форму <svg class="ico" aria-hidden="true"><use href="#i-arrow-d"/></svg></a>
+          </div>
+          <p class="hero__free"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Пошук і читання рецептів без реєстрації</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="recipes" aria-labelledby="h-recipes">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="h-recipes">Популярні та перевірені рецепти</h2>
+        <div class="verify-note"><span class="badge"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Human-tested</span>
+        <p>Наша редакція приготувала рецепт, перевірила час і вагу продуктів. <a class="link" href="#verify">Як ми перевіряємо</a></p></div>
+      </div>
+
+      <div class="filters" role="group" aria-label="Фільтр рецептів" id="filters">
+        <button class="filter" type="button" data-f="all" aria-pressed="true">Усі</button>
+        <button class="filter" type="button" data-f="fast" aria-pressed="false">До 60 хв</button>
+        <button class="filter" type="button" data-f="novice" aria-pressed="false">Для новачків</button>
+        <button class="filter" type="button" data-f="pro" aria-pressed="false">Для досвідчених</button>
+      </div>
+      <div id="hint" class="hint" aria-live="polite"></div>
+      <div id="found" class="found" hidden></div>
+      <div class="grid" id="grid"></div>
+      <div class="more"><a class="btn btn--ghost" id="all-recipes" href="#recipes" aria-controls="grid" aria-expanded="false"><span id="all-label">Усі рецепти</span> <svg class="ico" aria-hidden="true"><use href="#i-arrow-d"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="steps" aria-labelledby="h-steps">
+    <div class="wrap split">
+      <div class="split__text">
+        <h2 id="h-steps">Один крок.<br>Одна зрозуміла дія.</h2>
+        <p>Відкрийте покроковий режим у рецепті. Інгредієнти, послідовність і підказки залишаються перед очима, без постійного прокручування сторінки.</p>
+        <p>Спочатку перерахуйте складники, а потім переходьте до приготування.</p>
+        <a class="btn" href="#stepper">Готувати крок за кроком <svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+      </div>
+      <div class="step" role="group" aria-labelledby="step-title" id="stepper">
+        <div class="step__top">
+          <div class="step__name"><span id="step-recipe"></span> <span class="tag" id="step-time"></span></div>
+          <div class="step__count" id="step-count"></div>
+        </div>
+        <div class="bar" id="bar" role="progressbar" aria-label="Прогрес приготування" aria-valuemin="1" aria-valuemax="6"></div>
+        <div class="step__flow" aria-live="polite">
+          <h3 id="step-title">Підготуйте форму й духовку</h3>
+          <p class="step__text" id="step-text"></p>
+          <ul class="need" id="step-need" aria-label="Потрібно для цього кроку"></ul>
+          <p class="tip"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span id="step-tip"></span></p>
+        </div>
+        <div class="step__nav">
+          <button class="btn btn--ghost" type="button" id="prev"><svg class="ico" aria-hidden="true"><use href="#i-arrow-l"/></svg>Назад</button>
+          <button class="btn" type="button" id="next">Далі<svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="calculator" aria-labelledby="h-calc">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow"><svg class="ico" aria-hidden="true"><use href="#i-calc"/></svg>Калькулятор пропорцій та форм</span>
+        <h2 id="h-calc">Інша форма? Точні пропорції.</h2>
+        <p>Змініть розмір чи тип форми або кількість порцій, і калькулятор перерахує інгредієнти. У рецепті він працює з готовим списком продуктів.</p>
+      </div>
+      <div class="calc">
+        <div class="panel">
+          <p class="panel__title">Приклад: тісто для пирога (борошно 200 г, цукор 120 г, яйця 100 г)</p>
+          <div class="modes" role="group" aria-label="Спосіб перерахунку">
+            <button type="button" data-mode="shape" aria-pressed="true">За формою</button>
+            <button type="button" data-mode="serv" aria-pressed="false">За порціями</button>
+          </div>
+
+          <div class="forms" id="mode-shape">
+            <fieldset class="on" id="fs-a">
+              <legend>Форма в рецепті</legend>
+              <label class="lbl" for="a-type">Тип форми
+                <select class="field" id="a-type"><option value="round">Кругла</option><option value="square">Квадратна</option><option value="rect">Прямокутна</option></select></label>
+              <div class="dims">
+                <label class="lbl wide" for="a-d" data-for="round">Діаметр, см<input class="field" id="a-d" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="20"></label>
+                <label class="lbl wide" for="a-s" data-for="square" hidden>Сторона, см<input class="field" id="a-s" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="20"></label>
+                <label class="lbl" for="a-l" data-for="rect" hidden>Довжина, см<input class="field" id="a-l" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="30"></label>
+                <label class="lbl" for="a-w" data-for="rect" hidden>Ширина, см<input class="field" id="a-w" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="20"></label>
+              </div>
+            </fieldset>
+            <fieldset class="on" id="fs-b">
+              <legend>Ваша форма</legend>
+              <label class="lbl" for="b-type">Тип форми
+                <select class="field" id="b-type"><option value="round">Кругла</option><option value="square">Квадратна</option><option value="rect">Прямокутна</option></select></label>
+              <div class="dims">
+                <label class="lbl wide" for="b-d" data-for="round">Діаметр, см<input class="field" id="b-d" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="24"></label>
+                <label class="lbl wide" for="b-s" data-for="square" hidden>Сторона, см<input class="field" id="b-s" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="24"></label>
+                <label class="lbl" for="b-l" data-for="rect" hidden>Довжина, см<input class="field" id="b-l" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="30"></label>
+                <label class="lbl" for="b-w" data-for="rect" hidden>Ширина, см<input class="field" id="b-w" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="24"></label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="forms" id="mode-serv" hidden>
+            <fieldset class="on"><legend>У рецепті</legend>
+              <label class="lbl" for="s-a">Кількість порцій<input class="field" id="s-a" type="number" inputmode="numeric" min="1" max="100" step="1" value="8"></label></fieldset>
+            <fieldset class="on"><legend>Потрібно вам</legend>
+              <label class="lbl" for="s-b">Кількість порцій<input class="field" id="s-b" type="number" inputmode="numeric" min="1" max="100" step="1" value="12"></label></fieldset>
+          </div>
+
+          <div class="errmsg" id="err" role="alert" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span id="err-t"></span></div>
+          <p class="auto"><svg class="ico" aria-hidden="true"><use href="#i-sync"/></svg>Результат оновлюється одразу, кнопка не потрібна.</p>
+        </div>
+
+        <div class="panel result" aria-live="polite" id="result">
+          <h3 id="res-title">Для форми Ø 24 см</h3>
+          <div class="ratio" id="ratio">Коефіцієнт перерахунку: × 1,44</div>
+          <div class="wide-scroll">
+          <table class="tbl" aria-labelledby="res-title">
+            <thead><tr><th scope="col">Інгредієнт</th><th scope="col">Було</th><th scope="col">Стало</th></tr></thead>
+            <tbody id="tbody"></tbody>
+          </table></div>
+          <div id="notes"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="guide" aria-labelledby="h-guide">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="h-guide">Продукти</h2>
+        <p>Що робить кожен інгредієнт, які продукти бувають незвичними і чим їх замінити, якщо чогось немає вдома.</p>
+      </div>
+      <div class="guide__group" role="group" aria-labelledby="g-base"><h3 id="g-base">Базові продукти</h3>
+        <div class="pgrid">
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Борошно пшеничне</h4></div><p class="pc__desc">Основа більшості тіст. Просійте перед змішуванням, і випічка буде повітрянішою.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Борошно">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Цукор</h4></div><p class="pc__desc">Дає солодкість і золотисту скоринку. Мед чи сироп не замінюють його 1:1.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Цукор">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Яйця</h4></div><p class="pc__desc">Зв’язують і розпушують тісто. Беріть кімнатної температури.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Яйця">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Вершкове масло</h4></div><p class="pc__desc">Для тіста беріть м’яке, для листкового й пісочного – холодне.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Вершкове">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Молоко</h4></div><p class="pc__desc">Тепле потрібне для дріжджового тіста, холодне – для кремів.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Молоко">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Дріжджі</h4></div><p class="pc__desc">Сухих потрібно приблизно втричі менше за вагою, ніж свіжих.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Дріжджі">Знайти рецепти</a></article>
+        </div></div>
+      <div class="guide__group" role="group" aria-labelledby="g-alt"><h3 id="g-alt">Незвичні продукти</h3>
+        <div class="pgrid">
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Мигдалеве борошно</h4></div><p class="pc__desc">Безглютенова основа для печива й коржів. Тісто виходить вологішим.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Мигдалеве">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Кокосовий цукор</h4></div><p class="pc__desc">Має карамельний відтінок і замінює звичайний цукор у пропорції 1:1.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Кокосовий">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Аквафаба</h4></div><p class="pc__desc">Рідина з-під нуту: 3 ст. ложки замінюють 1 яйце в зефірі й безе.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Аквафаба">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Рослинне молоко</h4></div><p class="pc__desc">Вівсяне чи мигдальне замінює коров’яче в пропорції 1:1.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Рослинне">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Еритритол</h4></div><p class="pc__desc">Не карамелізується, тому випічка блідіша. Дозування звіряйте з пакуванням.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Еритритол">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Льняне «яйце»</h4></div><p class="pc__desc">1 ст. ложка меленого льону та 3 ст. ложки води замінюють одне яйце.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Льон">Знайти рецепти</a></article>
+        </div></div>
+      <div class="guide__group" role="group" aria-labelledby="g-rep"><h3 id="g-rep">Чим замінити</h3>
+        <label class="lbl swaps__search" for="swap-q">Чого немає вдома?<input class="field" id="swap-q" type="search" placeholder="Наприклад: яйце, масло, дріжджі" autocomplete="off" aria-controls="swap-list"></label><ul class="swaps" id="swap-list"><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Яйце (1 шт.)</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Лляне «яйце»</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>1 ст. л. меленого льону + 3 ст. л. води, 5 хв набухає</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Молоко</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Рослинне молоко</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>Пропорція 1:1</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Вершкове масло</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Рослинна олія</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>≈ ¾ від ваги масла</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Кефір, кисле молоко</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Молоко + лимонний сік</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>1 склянка молока + 1 ст. л. соку, 5 хв</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Свіжі дріжджі</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Сухі дріжджі</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>≈ ⅓ від ваги свіжих</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Цукор</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Кокосовий цукор</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>1:1, колір буде темнішим</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Яєчний білок (безе)</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Аквафаба</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>2 ст. л. замінюють 1 білок</span></p></li></ul><p class="empty" id="swap-empty" role="status" hidden>Такого продукту в таблиці замін поки немає.</p></div>
+      <div class="guide__group" role="group" aria-labelledby="g-tips"><h3 id="g-tips">Поради</h3>
+        <ul class="tips">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>Зважуйте інгредієнти: склянки й ложки дають різний результат.</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>Яйця, масло й молоко мають бути кімнатної температури.</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>Замінюйте за раз лише один продукт, щоб зрозуміти, що змінилося.</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>З безглютеновим борошном тісто краще відпочиває 15–20 хв перед випіканням.</span></li>
+        </ul></div>
+    </div>
+  </section>
+
+  <section class="section" id="verify" aria-labelledby="h-verify">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="h-verify">Що означає Human-tested</h2>
+        <p>Позначка стоїть лише на рецептах, які пройшли всі три кроки.</p>
+      </div>
+      <ol class="steps3">
+        <li><h3>Готуємо вдома</h3><p>Рецепт готує людина на звичайній кухні, за текстом, який бачите ви.</p></li>
+        <li><h3>Фіксуємо цифри</h3><p>Записуємо реальний час, вагу продуктів у грамах і розмір форми.</p></li>
+        <li><h3>Описуємо ознаки готовності</h3><p>Додаємо, як тісто має виглядати на кожному кроці, а не лише скільки хвилин випікати.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== MEDIA EMBED 1: YouTube-відео (iframe, 16:9, lazy loading, title для доступності) ===== -->
+  <section class="section section--alt" id="video" aria-labelledby="h-video">
+    <div class="wrap split">
+      <div class="split__text">
+        <span class="eyebrow"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg>Відеорецепт</span>
+        <h2 id="h-video">Подивіться, як це працює</h2>
+        <p>Відеорецепт яблучної шарлотки: так виглядає тісто на кожному етапі.</p>
+        <ul class="tips" style="grid-template-columns:minmax(0,1fr)">
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Яйця з цукром збиваються до світлої пишної маси.</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Борошно вмішується лопаткою знизу вгору.</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Готовність перевіряємо дерев’яною шпажкою.</span></li>
+        </ul>
+        <a class="btn" href="#stepper">Готувати крок за кроком <svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+      </div>
+      <!-- Відео YouTube: адаптивність через .embed--video { aspect-ratio:16/9 } у css/style.css -->
+      <figure class="embed embed--video">
+        <iframe src="https://www.youtube.com/embed/a-0Bmozyvbc" title="Відеорецепт яблучної шарлотки" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <figcaption>Відео відтворюється з YouTube.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== MEDIA EMBED 2: Google Maps (iframe, lazy loading, title для доступності) ===== -->
+  <section class="section" id="location" aria-labelledby="h-location">
+    <div class="wrap split">
+      <div class="split__text">
+        <span class="eyebrow"><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>Розташування</span>
+        <h2 id="h-location">Контакти</h2>
+        <p>Є питання щодо рецептів чи співпраці? Напишіть нам.</p>
+        <ul class="steps3 about__facts">
+          <li><h3>Адреса</h3><p>Київ, вул. Хрещатик</p></li>
+          <li><h3>Пошта</h3><p><a class="link" style="min-height:0" href="mailto:hello@bakesmart.ua">hello@bakesmart.ua</a></p></li>
+        </ul>
+        <a class="btn" href="mailto:hello@bakesmart.ua"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Написати нам</a>
+      </div>
+      <!-- Карта Google Maps: адаптивність через .embed--map { aspect-ratio:4/3; на мобільних 1/1 } у css/style.css -->
+      <figure class="embed embed--map">
+        <iframe src="https://www.google.com/maps?q=%D0%9A%D0%B8%D1%97%D0%B2%2C+%D0%A5%D1%80%D0%B5%D1%89%D0%B0%D1%82%D0%B8%D0%BA&output=embed" title="Карта: Київ, вулиця Хрещатик" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <figcaption>Орієнтовне розташування на карті Google.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="about" aria-labelledby="h-about">
+    <div class="wrap split">
+      <div class="split__text"><h2 id="h-about">Про BakeSmart.ua</h2>
+        <p>Ми допомагаємо пекти без «а раптом не вийде»: точні пропорції, зрозумілі кроки й рецепти, які команда справді приготувала вдома.</p>
+        <p>Платформа безкоштовна. Пошук за продуктами, калькулятор форм і довідник замін працюють без реєстрації.</p></div>
+      <ul class="steps3 about__facts"><li><h3>6 рецептів</h3><p>Кожен із позначкою Human-tested та покроковим режимом.</p></li><li><h3>Калькулятор</h3><p>Перерахунок під форму чи кількість порцій.</p></li></ul>
+    </div>
+  </section>
+
+  <section class="section" id="account" aria-labelledby="h-account">
+    <div class="wrap split">
+      <div class="split__text"><h2 id="h-account">Акаунт</h2>
+        <p>Увійдіть, щоб зберігати улюблені рецепти та власні форми. Це демо-режим: дані зберігаються лише у вашому браузері, пароль не зберігається.</p></div>
+      <div class="panel">
+        <form id="login-form" novalidate>
+          <label class="lbl" for="acc-email">Електронна пошта<input class="field" id="acc-email" name="email" type="email" autocomplete="email" required placeholder="name@example.com"></label>
+          <label class="lbl" for="acc-pass" style="margin-top:14px">Пароль (від 8 символів)<input class="field" id="acc-pass" name="pass" type="password" autocomplete="current-password" minlength="8" required></label>
+          <p class="errmsg" id="acc-err" role="alert" hidden></p>
+          <div class="acc__btns"><button class="btn" type="submit" name="act" value="login">Увійти</button><button class="btn btn--ghost" type="submit" name="act" value="signup">Створити акаунт</button></div>
+        </form>
+        <div id="acc-done" role="status" hidden><p class="acc__hi" id="acc-hi"></p><button class="btn btn--ghost" type="button" id="logout">Вийти</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="legal" aria-labelledby="h-legal">
+    <div class="wrap">
+      <div class="section__head"><h2 id="h-legal">Правова інформація</h2></div>
+      <div class="legal__grid">
+        <article id="privacy" aria-labelledby="h-privacy"><h3 id="h-privacy">Конфіденційність</h3>
+          <p>Для входу ми використовуємо лише вашу електронну пошту. Вона зберігається в браузері й не передається третім особам.</p>
+          <p>Продукти в пошуку та розміри форм у калькуляторі обробляються на вашому пристрої. Шрифти підвантажуються з Google Fonts, тому браузер може передавати IP-адресу цьому сервісу. Питання: <a class="link" style="min-height:0" href="mailto:hello@bakesmart.ua">hello@bakesmart.ua</a>.</p></article>
+        <article id="terms" aria-labelledby="h-terms"><h3 id="h-terms">Умови користування</h3>
+          <p>BakeSmart.ua надає рецепти, калькулятор і довідник продуктів для особистого некомерційного використання.</p>
+          <p>Час і пропорції залежать від духовки та продуктів, тож орієнтуйтеся на описані ознаки готовності. Алергени перевіряйте самостійно, заміни в довіднику є загальними рекомендаціями.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta" aria-labelledby="h-cta">
+    <div class="wrap cta__in">
+      <h2 id="h-cta">Що спечемо сьогодні?</h2>
+      <p>Почніть із продуктів, які вже є на кухні, або адаптуйте знайомий рецепт під свою форму.</p>
+      <div class="cta__btns">
+        <a class="btn btn--light" href="#hero-search" id="cta-find">Підібрати рецепт</a>
+        <a class="btn btn--outline-light" href="#calculator">До калькулятора</a>
+      </div>
+      <p style="font-size:.9375rem">Пошук і читання рецептів без реєстрації. <a class="link" style="color:#fff;min-height:0" href="#account">Акаунт</a> потрібен, щоб зберігати улюблені рецепти та власні форми.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div class="footer__brand"><img src="assets/images/logo-mark.svg" alt="" width="520" height="510" loading="lazy"><div><span class="logo__name">BakeSmart.ua</span><p>Українська платформа для випічки: рецепти, точні пропорції та зрозумілі кроки.</p></div></div>
+      <div><h2>На платформі</h2>
+        <ul>
+          <li><a href="#recipes">Рецепти</a></li>
+          <li><a href="#calculator">Калькулятор пропорцій</a></li>
+          <li><a href="#guide">Продукти</a></li>
+          <li><a href="#about">Про нас</a></li>
+          <li><a href="#account">Вхід</a></li>
+        </ul></div>
+      <div id="contacts"><h2>Контакти</h2>
+        <p>Електронна пошта:<br><a href="mailto:hello@bakesmart.ua">hello@bakesmart.ua</a></p></div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 BakeSmart.ua. Ілюстративний макет.</span>
+      <nav aria-label="Правові сторінки"><a href="#privacy">Конфіденційність</a><a href="#terms">Умови користування</a></nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.lang='uk';
+  var $=function(s,r){return (r||document).querySelector(s)};
+  var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+  var ico=function(n){return '<svg class="ico" aria-hidden="true"><use href="#i-'+n+'"/></svg>'};
+
+  /* mobile menu */
+  var burger=$('#burger'),nav=$('#nav'),mq=window.matchMedia('(max-width:860px)');
+  function syncNav(){ if(mq.matches){nav.hidden=burger.getAttribute('aria-expanded')!=='true'} else {nav.hidden=false} }
+  burger.addEventListener('click',function(){
+    var open=burger.getAttribute('aria-expanded')==='true';
+    burger.setAttribute('aria-expanded',String(!open));
+    burger.setAttribute('aria-label',open?'Відкрити меню':'Закрити меню');
+    syncNav();
+  });
+  nav.addEventListener('click',function(e){ if(e.target.closest('a')&&mq.matches){burger.setAttribute('aria-expanded','false');burger.setAttribute('aria-label','Відкрити меню');syncNav()} });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&mq.matches&&burger.getAttribute('aria-expanded')==='true'){burger.click();burger.focus()} });
+  (mq.addEventListener?mq.addEventListener('change',syncNav):mq.addListener(syncNav)); syncNav();
+
+  /* ---------- recipes ---------- */
+  var RECIPES=[
+    {id:'sharlotka',name:'Яблучна шарлотка',desc:'Повітряний пиріг із простих інгредієнтів.',min:50,level:'Новачок',kind:'novice',img:'assets/images/sharlotka.jpg',alt:'Яблучна шарлотка у формі на дерев’яному столі',ing:['яйця','цукор','борошно','яблука']},
+    {id:'brauni',name:'Шоколадний брауні',desc:'Насичений смак і волога середина.',min:45,level:'Базовий рівень',kind:'mid',img:'assets/images/brauni.jpg',alt:'Шматки шоколадного брауні на керамічній тарілці',ing:['шоколад','масло','яйця','цукор','борошно']},
+    {id:'bulochky',name:'Булочки з корицею',desc:'Дріжджове тісто з ароматною начинкою.',min:150,level:'Досвідчений',kind:'pro',img:'assets/images/bulochky.jpg',alt:'Булочки з корицею та глазур’ю на деці',ing:['борошно','молоко','дріжджі','цукор','масло','кориця','яйця']},
+    {id:'pechyvo',name:'Мигдалеве печиво',desc:'Ніжне печиво з мигдалевою ноткою та цукровою пудрою.',min:35,level:'Новачок',kind:'novice',img:'assets/images/pechyvo.jpg',alt:'Мигдалеве печиво з пелюстками мигдалю на тарілці',ing:['борошно','масло','цукор','мигдаль','яйця']},
+    {id:'focaccia',name:'Фокача з розмарином',desc:'Повітряний хліб з хрусткою скоринкою та оливковою олією.',min:120,level:'Базовий рівень',kind:'mid',img:'assets/images/focaccia.jpg',alt:'Фокача з розмарином та сіллю на деці',ing:['борошно','дріжджі','олія','розмарин','сіль']},
+    {id:'cheesecake',name:'Сирний чізкейк',desc:'Кремова текстура та пісочна основа з ягідним соусом.',min:90,level:'Досвідчений',kind:'pro',img:'assets/images/cheesecake.jpg',alt:'Шматок чізкейка з ягідним соусом і м’ятою',ing:['сир','яйця','цукор','масло','борошно']}
+  ];
+  var ALIAS={'мигдаль':['мигда'],'сир':['сир'],'олія':['олі'],'розмарин':['розмар'],'сіль':['сіл'],'борошно':['борош'],'яйця':['яйц','яєц','яйк'],'молоко':['молок'],'цукор':['цукор','цукр'],'масло':['масл'],'яблука':['яблу','яблук'],'шоколад':['шокол'],'дріжджі':['дріж'],'кориця':['кориц']};
+  function canon(t){t=t.toLowerCase();for(var k in ALIAS){for(var i=0;i<ALIAS[k].length;i++){if(t.indexOf(ALIAS[k][i])===0)return k}}return null}
+  var state={filter:'all',ing:['Борошно','Яйця','Молоко'],searched:false,showAll:false};
+
+  var HINTS={
+    all:{t:'Оберіть рівень',p:'Для новачків ми пояснюємо терміни та показуємо ознаки готовності, для досвідчених даємо вагу в грамах і точні пропорції.'},
+    fast:{t:'Рецепти до години',p:'Час видно на кожній картці, тож легко вибрати випічку на вечір.'},
+    novice:{t:'Якщо ви тільки починаєте',ul:['Складність і час видно одразу, ще до початку.','Техніки та терміни пояснено просто.','Ознаки готовності є у потрібному кроці.']},
+    pro:{t:'Якщо печете регулярно',ul:['Адаптуйте рецепт під форму або порції.','Отримуйте вагу інгредієнтів у грамах.','Зосередьтеся на техніці й результаті.']}
+  };
+
+  function userCanon(){var s={};state.ing.forEach(function(x){var c=canon(x);if(c)s[c]=x});return s}
+  function matchOf(r,u){var have=r.ing.filter(function(i){return u[i]});return {have:have,miss:r.ing.filter(function(i){return !u[i]})}}
+  function countFound(){var u=userCanon();return RECIPES.filter(function(r){return matchOf(r,u).have.length>0}).length}
+
+  function visible(){
+    return RECIPES.filter(function(r){
+      if(state.filter==='fast')return r.min<=60;
+      if(state.filter==='novice')return r.kind==='novice';
+      if(state.filter==='pro')return r.kind==='pro';
+      return true;
+    });
+  }
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+  function renderHint(){
+    var h=HINTS[state.filter],el=$('#hint');
+    el.innerHTML='<strong>'+h.t+'</strong>'+(h.ul?'<ul>'+h.ul.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>':'<p>'+h.p+'</p>');
+  }
+  function renderRecipes(){
+    var u=userCanon(),list=visible();
+    if(state.searched){
+      list=list.map(function(r,i){var m=matchOf(r,u);return {r:r,i:i,m:m,score:m.have.length/r.ing.length}})
+        .sort(function(a,b){return b.score-a.score||a.i-b.i});
+    } else list=list.map(function(r,i){return {r:r,i:i,m:null}});
+    if(!state.searched&&state.filter==='all'&&!state.showAll)list=list.slice(0,3);
+    var g=$('#grid');
+    if(!list.length){g.innerHTML='<p class="empty">За цим фільтром поки немає рецептів.</p>'}
+    else g.innerHTML=list.map(function(o){
+      var r=o.r,match='';
+      if(state.searched&&o.m){
+        match='<p class="match"><strong>Є '+o.m.have.length+' з '+r.ing.length+' продуктів.</strong>'+(o.m.miss.length?' Бракує: '+o.m.miss.join(', ')+'.':' Усе потрібне вже є.')+'</p>';
+      }
+      return '<article class="rc"><img src="'+r.img+'" alt="'+r.alt+'" width="860" height="506" loading="lazy">'+
+        '<div class="rc__body"><h3>'+r.name+'</h3><p class="rc__desc">'+r.desc+'</p>'+
+        '<ul class="meta"><li>'+ico('clock')+'<span><span class="sr-only">Час: </span>'+r.min+' хв</span></li><li>'+ico('level')+'<span><span class="sr-only">Складність: </span>'+r.level+'</span></li></ul>'+
+        '<span class="badge">'+ico('check')+'Human-tested</span>'+match+
+        '<div class="rc__go"><a href="#stepper" data-open="'+r.id+'" aria-label="Відкрити рецепт: '+r.name+'">Відкрити рецепт '+ico('arrow-r')+'</a><span class="rc__steps">'+ico('list')+'Крок за кроком</span></div></div></article>';
+    }).join('');
+    $$('#grid a[data-open]').forEach(function(a){a.addEventListener('click',function(){curId=a.getAttribute('data-open');cur=1;renderStep()})});
+    var more=$('#all-recipes');more.parentNode.hidden=state.searched||state.filter!=='all';
+    $('#all-label').textContent=state.showAll?'Показати менше':'Усі рецепти';more.setAttribute('aria-expanded',String(state.showAll));
+    var f=$('#found');
+    if(state.searched){
+      f.hidden=false;
+      f.innerHTML='<span><strong>Підібрано за вашими продуктами:</strong> '+state.ing.length+'. Спершу показано рецепти, де їх найбільше.</span><button class="btn btn--ghost btn--sm" type="button" id="reset-search">Скинути підбір</button>';
+      $('#reset-search').addEventListener('click',function(){state.searched=false;renderRecipes();$('#ing-input').focus()});
+    } else f.hidden=true;
+  }
+  $$('#filters .filter').forEach(function(b){
+    b.addEventListener('click',function(){
+      state.filter=b.getAttribute('data-f');
+      $$('#filters .filter').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+      renderHint();renderRecipes();
+    });
+  });
+
+  /* ---------- ingredient search ---------- */
+  var chips=$('#chips'),input=$('#ing-input'),findBtn=$('#find-btn'),help=$('#ing-help');
+  var HELP='Натисніть Enter або кому, щоб додати продукт. Можна додати кілька.';
+  function renderChips(){
+    chips.innerHTML='';
+    state.ing.forEach(function(name,i){
+      var li=document.createElement('li');li.className='chip';
+      var sp=document.createElement('span');sp.textContent=name;
+      var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Видалити: '+name);
+      b.innerHTML=ico('x');
+      b.addEventListener('click',function(){state.ing.splice(i,1);renderChips();input.focus()});
+      li.appendChild(sp);li.appendChild(b);chips.appendChild(li);
+    });
+    var n=countFound();
+    findBtn.textContent=state.ing.length?'Підібрати рецепт · '+n:'Підібрати рецепт';
+    findBtn.setAttribute('aria-label',state.ing.length?'Підібрати рецепт, підходить рецептів: '+n:'Підібрати рецепт');
+    if(state.searched)renderRecipes();
+  }
+  function addFrom(text){
+    var added=false;
+    text.split(',').forEach(function(p){
+      p=p.trim();if(!p)return;
+      p=cap(p.slice(0,40));
+      if(state.ing.length>=12||state.ing.some(function(x){return x.toLowerCase()===p.toLowerCase()}))return;
+      state.ing.push(p);added=true;
+    });
+    return added;
+  }
+  $('#hero-search').addEventListener('submit',function(e){e.preventDefault();addFrom(input.value);input.value='';help.textContent=HELP;renderChips()});
+  input.addEventListener('input',function(){
+    if(input.value.indexOf(',')>-1){var parts=input.value.split(',');var rest=parts.pop();addFrom(parts.join(','));input.value=rest.replace(/^\s+/,'');renderChips()}
+  });
+  input.addEventListener('keydown',function(e){ if(e.key==='Backspace'&&!input.value&&state.ing.length){state.ing.pop();renderChips()} });
+  findBtn.addEventListener('click',function(){
+    if(input.value.trim()){addFrom(input.value);input.value=''}
+    if(!state.ing.length){help.textContent='Додайте хоча б один продукт, щоб ми підібрали рецепт.';input.focus();return}
+    help.textContent=HELP;
+    state.searched=true;state.filter='all';
+    $$('#filters .filter').forEach(function(x){x.setAttribute('aria-pressed',String(x.getAttribute('data-f')==='all'))});
+    renderChips();renderHint();renderRecipes();
+    $('#recipes').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+  });
+  $('#cta-find').addEventListener('click',function(){setTimeout(function(){input.focus({preventScroll:true})},400)});
+
+  /* ---------- step mode (per recipe) ---------- */
+  var STEPS_BY={sharlotka:[
+    {t:'Підготуйте форму й духовку',x:'Розігрійте духовку до 180 °C. Змастіть форму діаметром 24 см маслом і присипте борошном.',need:['Форма Ø 24 см','Трохи масла'],tip:'Іншого розміру форма? Перерахуйте пропорції в калькуляторі нижче.'},
+    {t:'Збийте яйця з цукром',x:'Збивайте до світлої пишної маси. Слід від вінчика має залишатися на поверхні кілька секунд.',need:['Яйця, 3 шт.','Цукор, 150 г'],tip:'Яйця кімнатної температури збиваються рівномірніше.'},
+    {t:'Додайте борошно',x:'Просійте борошно й обережно перемішайте лопаткою знизу вгору, щоб тісто не втратило повітря.',need:['Борошно, 150 г'],tip:'Не користуйтеся міксером після додавання борошна, інакше пиріг вийде щільним.'},
+    {t:'Викладіть яблука й тісто',x:'Розподіліть нарізані яблука по формі та залийте тістом. Постукайте формою об стіл, щоб вийшло повітря.',need:['Яблука, 4 шт.'],tip:'Нарізайте яблука однаковими часточками, тоді вони пропечуться рівномірно.'},
+    {t:'Випікайте',x:'Випікайте на середньому рівні близько 40 хвилин, поки верх не стане золотистим.',need:['≈ 40 хв','180 °C'],tip:'Не відчиняйте духовку перші 25 хвилин, інакше тісто може опасти.'},
+    {t:'Перевірте готовність',x:'Проколіть пиріг дерев’яною шпажкою: вона має вийти сухою. Дайте пирогу охолонути у формі 10 хвилин.',need:['Дерев’яна шпажка'],tip:'Якщо шпажка волога, випікайте ще 5 хвилин і перевірте знову.'}
+  ],
+    brauni:[{"t": "Розтопіть шоколад", "x": "Розігрійте духовку до 180 °C, застеліть форму 20×20 см пергаментом. Розтопіть шоколад із маслом на водяній бані й трохи остудіть.", "need": ["Шоколад, 150 г", "Масло, 120 г"], "tip": "Не перегрівайте шоколад, інакше він стане зернистим."}, {"t": "Збийте яйця з цукром", "x": "Збивайте 2–3 хвилини до світлої маси, поки цукор майже розчиниться.", "need": ["Яйця, 3 шт.", "Цукор, 150 г"], "tip": "Саме збиті яйця дають брауні тонку блискучу скоринку."}, {"t": "З’єднайте з борошном", "x": "Влийте шоколад, додайте борошно та щіпку солі. Перемішайте лопаткою до однорідності, не довше.", "need": ["Борошно, 80 г", "Сіль, щіпка"], "tip": "Довге перемішування зробить брауні сухим."}, {"t": "Випікайте й охолодіть", "x": "Випікайте близько 25 хвилин. Шпажка має виходити з вологими крихтами. Охолодіть у формі перед нарізанням.", "need": ["≈ 25 хв", "180 °C"], "tip": "Зачекайте повного охолодження: так шматки не розваляться."}],
+    bulochky:[{"t": "Замісіть тісто", "x": "Змішайте борошно, тепле молоко, дріжджі, цукор, яйце та м’яке масло. Місіть 8–10 хвилин до гладкого тіста.", "need": ["Борошно, 400 г", "Молоко, 250 мл", "Сухі дріжджі, 7 г", "Цукор, 50 г", "Яйце, 1 шт.", "Масло, 60 г"], "tip": "Тісто має бути м’яким і трохи липнути до рук, але не до стола."}, {"t": "Дайте тісту підійти", "x": "Накрийте тісто й залиште в теплі приблизно на годину, поки воно збільшиться вдвічі.", "need": ["≈ 60 хв"], "tip": "Тісто готове, якщо від легкого натискання ямка повільно випрямляється."}, {"t": "Розкачайте й змастіть", "x": "Розкачайте тісто в прямокутник приблизно 30×40 см. Змастіть маслом і посипте цукром з корицею.", "need": ["Масло, 60 г", "Цукор, 80 г", "Кориця, 2 ст. л."], "tip": "М’яке масло намазується легше й не рве тісто."}, {"t": "Згорніть і наріжте", "x": "Щільно згорніть рулет і наріжте на 8–10 шматків. Викладіть у форму й залиште ще на 30 хвилин.", "need": ["Форма або деко", "≈ 30 хв"], "tip": "Різати зручніше ниткою: шматки не сплющуються."}, {"t": "Випікайте", "x": "Випікайте при 180 °C 20–25 хвилин до золотистого кольору. Дайте трохи охолонути й полийте глазур’ю.", "need": ["≈ 25 хв", "180 °C"], "tip": "Глазур наносьте на теплі булочки, а не на гарячі."}],
+    pechyvo:[{"t": "Замісіть тісто", "x": "Розітріть м’яке масло з цукром, додайте жовток, борошно та мелений мигдаль. Замісіть м’яке тісто.", "need": ["Борошно, 150 г", "Масло, 100 г", "Цукор, 60 г", "Мигдаль, 80 г", "Жовток, 1 шт."], "tip": "Не місіть довго, щоб печиво лишилося розсипчастим."}, {"t": "Сформуйте печиво", "x": "Розділіть тісто на кульки по 25 г, злегка розплющіть і покладіть зверху пелюстки мигдалю.", "need": ["Пелюстки мигдалю"], "tip": "Охолодіть тісто 15 хвилин, якщо воно липне до рук."}, {"t": "Випікайте", "x": "Випікайте при 170 °C 12–15 хвилин, поки краї стануть ледь золотистими.", "need": ["≈ 15 хв", "170 °C"], "tip": "Центр залишиться світлим, і це нормально."}, {"t": "Охолодіть і присипте", "x": "Дайте печиву охолонути на деку 10 хвилин, потім присипте цукровою пудрою.", "need": ["Цукрова пудра"], "tip": "Гаряче печиво ламке, воно твердішає під час охолодження."}],
+    focaccia:[{"t": "Замісіть тісто", "x": "Змішайте борошно, воду, дріжджі, сіль і оливкову олію. Тісто має бути дуже м’яким і липким.", "need": ["Борошно, 500 г", "Вода, 400 мл", "Сухі дріжджі, 7 г", "Сіль, 10 г", "Олія, 2 ст. л."], "tip": "Липке тісто – це нормально, змочіть руки водою замість додавання борошна."}, {"t": "Дайте підійти", "x": "Накрийте тісто й залиште на 60 хвилин, поки воно збільшиться вдвічі.", "need": ["≈ 60 хв"], "tip": "Тісто має бути повітряним, з маленькими бульбашками."}, {"t": "Сформуйте", "x": "Викладіть тісто на змащене оливковою олією деко, розтягніть пальцями. Вдавіть ямки, збризніть олією, додайте розмарин і сіль.", "need": ["Олія", "Розмарин", "Крупна сіль"], "tip": "Ямки вдавлюйте до самого дна, тоді вони тримають олію."}, {"t": "Дайте відпочити", "x": "Залиште тісто на 20 хвилин, щоб воно трохи піднялося.", "need": ["≈ 20 хв"], "tip": "Не пропускайте цей крок, він робить хліб повітряним."}, {"t": "Випікайте", "x": "Випікайте при 220 °C 20–25 хвилин до золотистої скоринки.", "need": ["≈ 25 хв", "220 °C"], "tip": "Поки фокача тепла, збризніть її ще трохи олією."}],
+    cheesecake:[{"t": "Приготуйте основу", "x": "Подрібніть печиво, змішайте з розтопленим маслом і втрамбуйте у форму Ø 20 см. Приберіть у холодильник на 10 хвилин.", "need": ["Печиво, 200 г", "Масло, 80 г", "Форма Ø 20 см"], "tip": "Втрамбовуйте основу дном склянки, так вона буде щільною."}, {"t": "Приготуйте крем", "x": "Збийте на низькій швидкості сир із цукром, додайте яйця по одному та ваніль. Не збивайте на високій швидкості.", "need": ["Сир, 600 г", "Цукор, 150 г", "Яйця, 3 шт.", "Ваніль"], "tip": "Усі продукти мають бути кімнатної температури, тоді в кремі не буде грудок."}, {"t": "Випікайте", "x": "Вилийте крем на основу й випікайте при 160 °C 50–55 хвилин. Центр має ледь тремтіти.", "need": ["≈ 55 хв", "160 °C"], "tip": "Не відчиняйте духовку перші 40 хвилин."}, {"t": "Повільно остудіть", "x": "Вимкніть духовку й залиште чізкейк усередині з прочиненими дверцятами на годину.", "need": ["≈ 60 хв"], "tip": "Повільне охолодження запобігає тріщинам."}, {"t": "Охолодіть і подайте", "x": "Поставте в холодильник мінімум на 6 годин. Подавайте з ягідним соусом.", "need": ["≥ 6 год", "Ягідний соус"], "tip": "Чізкейк найкращий наступного дня."}]};
+  var curId='sharlotka',cur=1;
+  function renderStep(){
+    var S=STEPS_BY[curId],s=S[cur-1],r=RECIPES.filter(function(x){return x.id===curId})[0],bar=$('#bar');
+    $('#step-recipe').textContent=r.name;$('#step-time').textContent=r.min+' хв';
+    $('#step-count').textContent='Крок '+cur+' із '+S.length;
+    $('#step-title').textContent=s.t;$('#step-text').textContent=s.x;$('#step-tip').textContent=s.tip;
+    $('#step-need').innerHTML='<li class="lab">Потрібно:</li>'+s.need.map(function(n){return '<li>'+n+'</li>'}).join('');
+    bar.innerHTML=S.map(function(){return '<i></i>'}).join('');bar.style.gridTemplateColumns='repeat('+S.length+',1fr)';
+    $$('#bar i').forEach(function(i,k){i.className=k<cur?'on':''});
+    bar.setAttribute('aria-valuemax',S.length);bar.setAttribute('aria-valuenow',cur);bar.setAttribute('aria-valuetext','Крок '+cur+' із '+S.length);
+    $('#prev').hidden=cur===1;
+    $('#next').innerHTML=(cur===S.length?'До рецептів':'Далі')+ico(cur===S.length?'list':'arrow-r');
+  }
+  $('#prev').addEventListener('click',function(){if(cur>1){cur--;renderStep()}});
+  $('#next').addEventListener('click',function(){
+    if(cur<STEPS_BY[curId].length){cur++;renderStep()}
+    else{cur=1;renderStep();$('#recipes').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
+  });
+
+  /* ---------- calculator ---------- */
+  var BASE=[{n:'Борошно',g:200},{n:'Цукор',g:120},{n:'Яйця',g:100,egg:true}];
+  var mode='shape';
+  function fmtN(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
+  function fmtR(r){return (Math.round(r*100)/100).toString().replace('.',',')}
+  function eggWord(n){var m=n%10,h=n%100;if(m===1&&h!==11)return 'яйце';if(m>=2&&m<=4&&(h<12||h>14))return 'яйця';return 'яєць'}
+  function num(id){var el=$('#'+id);var v=parseFloat(String(el.value).replace(',','.'));return v}
+  function badField(id,bad){var el=$('#'+id);if(bad)el.setAttribute('aria-invalid','true');else el.removeAttribute('aria-invalid')}
+  function ok(v,max){return isFinite(v)&&v>=5&&v<=(max||80)}
+  function shape(p){
+    var t=$('#'+p+'-type').value,ids,vals,okAll=true,area,label;
+    if(t==='round'){ids=[p+'-d'];}
+    else if(t==='square'){ids=[p+'-s'];}
+    else {ids=[p+'-l',p+'-w'];}
+    vals=ids.map(num);
+    ids.forEach(function(id,i){var good=ok(vals[i]);badField(id,!good);if(!good)okAll=false});
+    ['d','s','l','w'].forEach(function(k){if(ids.indexOf(p+'-'+k)<0)badField(p+'-'+k,false)});
+    if(!okAll)return null;
+    var f=function(x){return fmtR(x)};
+    if(t==='round'){area=Math.PI*Math.pow(vals[0]/2,2);label='круглої форми Ø '+f(vals[0])+' см'}
+    else if(t==='square'){area=vals[0]*vals[0];label='квадратної форми '+f(vals[0])+' × '+f(vals[0])+' см'}
+    else {area=vals[0]*vals[1];label='прямокутної форми '+f(vals[0])+' × '+f(vals[1])+' см'}
+    return {area:area,label:label};
+  }
+  function toggleDims(p){
+    var t=$('#'+p+'-type').value;
+    $$('#fs-'+p+' [data-for]').forEach(function(l){l.hidden=l.getAttribute('data-for')!==t});
+  }
+  function calc(){
+    var ratio,title,errs=[];
+    if(mode==='shape'){
+      var A=shape('a'),B=shape('b');
+      if(!A||!B){errs.push('Введіть розміри форми від 5 до 80 см, щоб побачити результат.')}
+      else{ratio=B.area/A.area;title='Для '+B.label}
+    } else {
+      var a=num('s-a'),b=num('s-b'),ga=isFinite(a)&&a>=1&&a<=100,gb=isFinite(b)&&b>=1&&b<=100;
+      badField('s-a',!ga);badField('s-b',!gb);
+      if(!ga||!gb){errs.push('Кількість порцій має бути від 1 до 100.')}
+      else{ratio=b/a;title='Для '+Math.round(b)+' '+(Math.round(b)%10===1&&Math.round(b)%100!==11?'порції':'порцій')}
+    }
+    var err=$('#err');
+    if(errs.length){err.hidden=false;$('#err-t').textContent=errs[0];
+      $('#res-title').textContent='Перевірте дані';$('#ratio').textContent='Коефіцієнт перерахунку: –';
+      $('#tbody').innerHTML='<tr><td colspan="3" style="text-align:left;color:var(--ink-2)">Поки що немає чого рахувати.</td></tr>';$('#notes').innerHTML='';return}
+    err.hidden=true;
+    $('#res-title').textContent=title;
+    $('#ratio').textContent='Коефіцієнт перерахунку: × '+fmtR(ratio);
+    $('#tbody').innerHTML=BASE.map(function(it){
+      var g=Math.round(it.g*ratio),sub='';
+      if(it.egg){var pcs=Math.max(1,Math.round(g/50));sub='<small>без шкаралупи, ≈ '+pcs+' '+eggWord(pcs)+'</small>'}
+      return '<tr><th scope="row">'+it.n+sub+'</th><td>'+it.g+' г</td><td class="new">'+fmtN(g)+' г</td></tr>';
+    }).join('');
+    var n='';
+    if(ratio>2.5||ratio<0.4)n+='<p class="note">'+ico('alert')+'<span>Форми дуже різні за розміром (× '+fmtR(ratio)+'). Тісто може вийти надто тонким або надто товстим, тож подумайте про іншу форму.</span></p>';
+    n+='<p class="note">'+ico('clock')+'<span>Висота тіста змінюється разом із формою, тому час випікання перевіряйте окремо. Зазвичай у ширшій формі тісто тонше й пропікається швидше.</span></p>';
+    $('#notes').innerHTML=n;
+  }
+  ['a','b'].forEach(function(p){
+    $('#'+p+'-type').addEventListener('change',function(){toggleDims(p);calc()});
+    toggleDims(p);
+  });
+  $$('#calculator input.field').forEach(function(i){i.addEventListener('input',calc)});
+  $$('.modes button').forEach(function(b){
+    b.addEventListener('click',function(){
+      mode=b.getAttribute('data-mode');
+      $$('.modes button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+      $('#mode-shape').hidden=mode!=='shape';$('#mode-serv').hidden=mode!=='serv';
+      calc();
+    });
+  });
+
+  /* guide buttons: add product, run search, scroll to the catalog */
+  $$('a[data-ing]').forEach(function(a){a.addEventListener('click',function(e){
+    e.preventDefault();
+    addFrom(a.getAttribute('data-ing'));
+    state.searched=true;state.filter='all';
+    $$('#filters .filter').forEach(function(x){x.setAttribute('aria-pressed',String(x.getAttribute('data-f')==='all'))});
+    renderChips();renderHint();renderRecipes();
+    $('#recipes').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+  })});
+
+  /* replacements: live filter */
+  (function(){var q=$('#swap-q'),items=$$('#swap-list .swap'),em=$('#swap-empty');
+    q.addEventListener('input',function(){var v=q.value.trim().toLowerCase(),n=0;
+      items.forEach(function(li){var ok=!v||li.textContent.toLowerCase().indexOf(v)>-1;li.hidden=!ok;if(ok)n++});
+      em.hidden=n>0});
+  })();
+  /* "All recipes": show / collapse the full list */
+  $('#all-recipes').addEventListener('click',function(){state.showAll=!state.showAll;renderRecipes()});
+
+  /* ---------- account (demo, browser only) ---------- */
+  var form=$('#login-form'),done=$('#acc-done'),accErr=$('#acc-err'),accLink=$('#account-link');
+  function store(v){try{if(v===null)localStorage.removeItem('bs-user');else if(v)localStorage.setItem('bs-user',v);else return localStorage.getItem('bs-user')}catch(e){}return null}
+  function showAcc(){
+    var u=store();form.hidden=!!u;done.hidden=!u;accLink.textContent=u?'Акаунт':'Увійти';
+    if(u)$('#acc-hi').textContent='Ви увійшли як '+u+'.';
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();var em=$('#acc-email'),pw=$('#acc-pass'),bad=!em.validity.valid||!em.value.trim()||pw.value.length<8;
+    badField('acc-email',!em.validity.valid||!em.value.trim());badField('acc-pass',pw.value.length<8);
+    accErr.hidden=!bad;if(bad){accErr.textContent='Введіть коректну пошту та пароль від 8 символів.';return}
+    store(em.value.trim());pw.value='';showAcc();
+  });
+  $('#logout').addEventListener('click',function(){store(null);showAcc();$('#acc-email').focus()});
+  showAcc();
+
+  renderChips();renderHint();renderRecipes();renderStep();calc();
+})();
+</script>
+<script>
+(function(){
+  var root=document.documentElement,btn=document.getElementById('theme-toggle');
+  function sync(){btn.setAttribute('aria-pressed',String(root.getAttribute('data-theme')==='dark'))}
+  btn.addEventListener('click',function(){
+    var t=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',t);
+    try{localStorage.setItem('bs-theme',t)}catch(e){}
+    sync();
+  });
+  sync();
+  var v=document.getElementById('hero-video');
+  if(v&&window.matchMedia('(prefers-reduced-motion:reduce)').matches){v.removeAttribute('autoplay');v.pause()}
+})();
+</script>
+
+</body>
+</html>
