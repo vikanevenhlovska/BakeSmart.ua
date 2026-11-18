@@ -420,3 +420,33 @@ main [id],footer [id]{scroll-margin-top:96px}
 [data-theme="dark"] .filter:active{box-shadow:0 0 0 3px rgba(226,185,143,.35)}
 [data-theme="dark"] .modes{box-shadow:inset 0 0 0 1px rgba(226,185,143,.25)}
 [data-theme="dark"] .modes button:not([aria-pressed="true"]):hover{background:rgba(226,185,143,.18);color:var(--ink)}
+
+/* ===== ЛР №10: Typed.js, Fancybox-галерея, Swiper-слайдер відгуків ===== */
+.hero__typed{font-family:var(--font-display);font-weight:600;font-size:clamp(1.2rem,1rem + .8vw,1.6rem);color:var(--brown);min-height:1.5em}
+.hero__typed .typed-cursor{color:var(--brown)}
+
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:980px){.gal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.gal{grid-template-columns:minmax(0,1fr)}}
+.gal__item{display:block;border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow);cursor:zoom-in}
+.gal__item img{width:100%;height:auto;aspect-ratio:17/10;object-fit:cover;transition:transform .3s}
+.gal__item:hover img{transform:scale(1.04)}
+
+.reviews-swiper{--swiper-theme-color:var(--brown);--swiper-navigation-size:20px;padding:4px 4px 64px}
+.reviews-swiper .swiper-slide{height:auto}
+/* проти FOUC: до ініціалізації слайди стоять в один ряд і не розтягують сторінку */
+.reviews-swiper:not(.swiper-initialized) .swiper-wrapper{display:flex;overflow:hidden}
+.reviews-swiper:not(.swiper-initialized) .swiper-slide{flex:0 0 100%}
+.rev{display:flex;flex-direction:column;gap:14px;height:100%;margin:0;padding:26px;background:var(--card);border-radius:var(--r-card);box-shadow:var(--shadow)}
+.rev__stars{margin:0;color:#C98A1B;letter-spacing:.15em;font-size:1.1rem}
+.rev blockquote{margin:0;flex:1;color:var(--ink)}
+.rev figcaption{display:flex;align-items:center;gap:12px}
+.rev figcaption strong{display:block;color:var(--brown-d)}
+.rev__role{display:block;font-size:.875rem;color:var(--ink-2)}
+.rev__ava{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;background:var(--sage-bg);color:var(--sage-ink);font-weight:700;font-size:.9rem}
+.reviews-swiper .swiper-pagination{bottom:12px}
+.reviews-swiper .swiper-pagination-bullet{width:10px;height:10px;background:var(--ink-2);opacity:.45}
+.reviews-swiper .swiper-pagination-bullet-active{background:var(--brown);opacity:1}
+.reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{top:auto;bottom:0;margin:0;width:44px;height:44px;border-radius:50%;background:var(--card);box-shadow:var(--shadow)}
+.reviews-swiper .swiper-button-prev{left:calc(50% - 110px)}
+.reviews-swiper .swiper-button-next{right:calc(50% - 110px)}

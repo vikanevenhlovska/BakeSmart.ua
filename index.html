@@ -12,6 +12,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap">
 <script src="https://cdn.tailwindcss.com"></script>
+<!-- ЛР №10: CSS плагінів через CDN (підключаються ДО власних стилів, щоб їх можна було перевизначити) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -64,6 +67,8 @@
     <div class="wrap hero__in">
       <div class="hero__copy">
         <h1 id="h1">Ідеальна випічка з першої спроби, без складних розрахунків</h1>
+        <!-- ЛР №10: Typed.js; декоративний рядок, текст усередині показується без JS -->
+        <p class="hero__typed" aria-hidden="true"><span id="typed-text">Точні пропорції для будь-якої форми.</span></p>
         <p class="hero__lead">Українська платформа з точним калькулятором форм, розумним пошуком за інгредієнтами з холодильника та перевіреними human-tested рецептами.</p>
 
         <form class="search" id="hero-search" autocomplete="off" aria-labelledby="search-title" style="scroll-margin-top:100px">
@@ -248,6 +253,102 @@
         <li><h3>Фіксуємо цифри</h3><p>Записуємо реальний час, вагу продуктів у грамах і розмір форми.</p></li>
         <li><h3>Описуємо ознаки готовності</h3><p>Додаємо, як тісто має виглядати на кожному кроці, а не лише скільки хвилин випікати.</p></li>
       </ol>
+    </div>
+  </section>
+
+  <!-- ===== ЛР №10: Fancybox v5, галерея (єдиний альбом через data-fancybox) ===== -->
+  <section class="section section--alt" id="gallery" aria-labelledby="h-gallery">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>Галерея</span>
+        <h2 id="h-gallery">Наша випічка</h2>
+        <p>Натисніть на фото, щоб відкрити його на весь екран. Зображення можна збільшувати та гортати.</p>
+      </div>
+      <div class="gal">
+        <a class="gal__item" href="assets/images/sharlotka.jpg" data-fancybox="bakery-gallery" data-caption="Яблучна шарлотка">
+          <img src="assets/images/sharlotka.jpg" alt="Яблучна шарлотка у формі на дерев’яному столі" width="860" height="506" loading="lazy">
+        </a>
+        <a class="gal__item" href="assets/images/brauni.jpg" data-fancybox="bakery-gallery" data-caption="Шоколадний брауні">
+          <img src="assets/images/brauni.jpg" alt="Шматки шоколадного брауні на керамічній тарілці" width="860" height="506" loading="lazy">
+        </a>
+        <a class="gal__item" href="assets/images/bulochky.jpg" data-fancybox="bakery-gallery" data-caption="Булочки з корицею">
+          <img src="assets/images/bulochky.jpg" alt="Булочки з корицею та глазур’ю на деці" width="860" height="506" loading="lazy">
+        </a>
+        <a class="gal__item" href="assets/images/pechyvo.jpg" data-fancybox="bakery-gallery" data-caption="Мигдалеве печиво">
+          <img src="assets/images/pechyvo.jpg" alt="Мигдалеве печиво з пелюстками мигдалю на тарілці" width="860" height="506" loading="lazy">
+        </a>
+        <a class="gal__item" href="assets/images/focaccia.jpg" data-fancybox="bakery-gallery" data-caption="Фокача з розмарином">
+          <img src="assets/images/focaccia.jpg" alt="Фокача з розмарином та сіллю на деці" width="860" height="506" loading="lazy">
+        </a>
+        <a class="gal__item" href="assets/images/cheesecake.jpg" data-fancybox="bakery-gallery" data-caption="Сирний чізкейк">
+          <img src="assets/images/cheesecake.jpg" alt="Шматок чізкейка з ягідним соусом і м’ятою" width="860" height="506" loading="lazy">
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ЛР №10: Swiper.js v11, слайдер відгуків (6 слайдів) ===== -->
+  <section class="section" id="reviews" aria-labelledby="h-reviews">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>Відгуки</span>
+        <h2 id="h-reviews">Що кажуть домашні кондитери</h2>
+      </div>
+      <div class="swiper reviews-swiper" aria-label="Відгуки користувачів">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <figure class="rev">
+              <p class="rev__stars" aria-hidden="true">★★★★★</p>
+              <span class="sr-only">Оцінка: 5 з 5</span>
+              <blockquote><p>Калькулятор форм врятував мій чізкейк: перерахувала рецепт з Ø 24 на Ø 20 см, і все вийшло з першої спроби.</p></blockquote>
+              <figcaption><span class="rev__ava" aria-hidden="true">МР</span><span><strong>Марія Р.</strong><span class="rev__role">Домашня кондитерка, Київ</span></span></figcaption>
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure class="rev">
+              <p class="rev__stars" aria-hidden="true">★★★★★</p>
+              <span class="sr-only">Оцінка: 5 з 5</span>
+              <blockquote><p>Знайшла рецепт із того, що було в холодильнику. Шарлотка вийшла пишною, а ознаки готовності допомогли не пересушити.</p></blockquote>
+              <figcaption><span class="rev__ava" aria-hidden="true">ОК</span><span><strong>Олена К.</strong><span class="rev__role">Любителька шарлотки, Львів</span></span></figcaption>
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure class="rev">
+              <p class="rev__stars" aria-hidden="true">★★★★★</p>
+              <span class="sr-only">Оцінка: 5 з 5</span>
+              <blockquote><p>Нарешті вага продуктів у грамах, а не «склянка борошна». Брауні вдалося з першого разу.</p></blockquote>
+              <figcaption><span class="rev__ava" aria-hidden="true">АТ</span><span><strong>Андрій Т.</strong><span class="rev__role">Початківець, Харків</span></span></figcaption>
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure class="rev">
+              <p class="rev__stars" aria-hidden="true">★★★★★</p>
+              <span class="sr-only">Оцінка: 5 з 5</span>
+              <blockquote><p>Покроковий режим дуже зручний: телефон стоїть на столі, а руки в тісті.</p></blockquote>
+              <figcaption><span class="rev__ava" aria-hidden="true">ІБ</span><span><strong>Ірина Б.</strong><span class="rev__role">Мама двох дітей, Одеса</span></span></figcaption>
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure class="rev">
+              <p class="rev__stars" aria-hidden="true">★★★★★</p>
+              <span class="sr-only">Оцінка: 5 з 5</span>
+              <blockquote><p>Вперше вдалося дріжджове тісто для булочок з корицею. Підказки про вигляд тіста на кожному кроці дуже допомогли.</p></blockquote>
+              <figcaption><span class="rev__ava" aria-hidden="true">СД</span><span><strong>Софія Д.</strong><span class="rev__role">Студентка, Дніпро</span></span></figcaption>
+            </figure>
+          </div>
+          <div class="swiper-slide">
+            <figure class="rev">
+              <p class="rev__stars" aria-hidden="true">★★★★★</p>
+              <span class="sr-only">Оцінка: 5 з 5</span>
+              <blockquote><p>Українською, без реклами і зайвого тексту. Мигдалеве печиво готую вже втретє.</p></blockquote>
+              <figcaption><span class="rev__ava" aria-hidden="true">НЛ</span><span><strong>Назар Л.</strong><span class="rev__role">Пекар-аматор, Тернопіль</span></span></figcaption>
+            </figure>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
     </div>
   </section>
 
@@ -725,5 +826,10 @@
 })();
 </script>
 
+<!-- ЛР №10: JS плагінів через CDN (в кінці body) та ініціалізація -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="assets/js/plugins.js"></script>
 </body>
 </html>
