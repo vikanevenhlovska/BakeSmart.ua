@@ -333,6 +333,57 @@
     </div>
   </section>
 
+  <section class="section" id="feedback" aria-labelledby="h-feedback">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Зворотний зв’язок</span>
+        <h2 id="h-feedback">Напишіть нам</h2>
+        <p>Питання щодо рецептів, пропозиція чи співпраця: заповніть форму, і ми відповімо на пошту.</p>
+      </div>
+      <form class="panel mx-auto w-full max-w-3xl" id="feedbackForm" novalidate>
+        <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <div class="flex flex-col gap-1.5">
+            <label class="font-semibold" for="username">Ім’я <span aria-hidden="true">*</span></label>
+            <input class="field w-full" id="username" name="username" type="text" autocomplete="name" maxlength="50" required aria-required="true" aria-describedby="usernameError">
+            <p class="ferr hidden" id="usernameError" aria-live="polite"></p>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="font-semibold" for="email">Електронна пошта <span aria-hidden="true">*</span></label>
+            <input class="field w-full" id="email" name="email" type="email" autocomplete="email" required aria-required="true" aria-describedby="emailError">
+            <p class="ferr hidden" id="emailError" aria-live="polite"></p>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="font-semibold" for="phone">Телефон <span aria-hidden="true">*</span></label>
+            <input class="field w-full" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" required aria-required="true" aria-describedby="phoneHelp phoneHint phoneError">
+            <p class="help" id="phoneHelp">Формат: +380501234567</p>
+            <p class="fhint" id="phoneHint" aria-live="polite"></p>
+            <p class="ferr hidden" id="phoneError" aria-live="polite"></p>
+          </div>
+          <div class="flex flex-col gap-1.5">
+            <label class="font-semibold" for="topic">Тема звернення</label>
+            <select class="field w-full" id="topic" name="topic">
+              <option>Питання щодо рецепта</option><option>Співпраця</option><option>Пропозиція щодо сайту</option><option>Інше</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-1.5 md:col-span-2">
+            <label class="font-semibold" for="message">Повідомлення <span aria-hidden="true">*</span></label>
+            <textarea class="field w-full" id="message" name="message" rows="5" maxlength="1000" required aria-required="true" aria-describedby="messageError"></textarea>
+            <p class="ferr hidden" id="messageError" aria-live="polite"></p>
+          </div>
+          <div class="flex flex-col gap-1.5 md:col-span-2">
+            <div class="flex items-start gap-3">
+              <input class="chk mt-2 h-6 w-6 shrink-0" id="agreement" name="agreement" type="checkbox" required aria-required="true" aria-describedby="agreementError">
+              <label class="cursor-pointer py-2" for="agreement">Погоджуюсь з <a class="link" href="#privacy" style="min-height:0">політикою конфіденційності</a></label>
+            </div>
+            <p class="ferr hidden" id="agreementError" aria-live="polite"></p>
+          </div>
+          <div class="md:col-span-2 md:justify-self-end">
+            <button class="btn w-full md:w-auto" type="submit">Надіслати</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
   <section class="cta" aria-labelledby="h-cta">
     <div class="wrap cta__in">
       <h2 id="h-cta">Що спечемо сьогодні?</h2>
@@ -341,7 +392,7 @@
         <a class="btn btn--light" href="#hero-search" id="cta-find">Підібрати рецепт</a>
         <a class="btn btn--outline-light" href="#calculator">До калькулятора</a>
       </div>
-      <p style="font-size:.9375rem">Пошук і читання рецептів без реєстрації <a class="link" style="color:#fff;min-height:0" href="#account">Акаунт</a> потрібен, щоб зберігати улюблені рецепти та власні форми.</p>
+      <p style="font-size:.9375rem">Пошук і читання рецептів без реєстрації. <a class="link" style="color:#fff;min-height:0" href="#account">Акаунт</a> потрібен, щоб зберігати улюблені рецепти та власні форми.</p>
     </div>
   </section>
 </main>
@@ -649,6 +700,15 @@
   renderChips();renderHint();renderRecipes();renderStep();calc();
 })();
 </script>
+<div class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalText">
+  <div class="panel w-full max-w-md text-center">
+    <h3 id="modalTitle">Дякуємо!</h3>
+    <p id="modalText" class="mt-2">Ваше повідомлення успішно надіслано.</p>
+    <p class="help mt-2">Демонстрація: дані нікуди не надсилаються, форма лише пройшла клієнтську валідацію.</p>
+    <button class="btn mt-5" type="button" id="modalClose">Закрити</button>
+  </div>
+</div>
+<script src="assets/js/validation.js" defer></script>
 <script>
 (function(){
   var root=document.documentElement,btn=document.getElementById('theme-toggle');
