@@ -60,3 +60,7 @@ Project for web design and development lab course featuring baking calculator an
 - Фото рецептів: WebP 860 × 506 для карток і 1600 px для Fancybox (`*-large.webp`); Hero: `hero.webp` (1440) і `hero-800.webp` (мобільні); `hero.jpg` лишився лише для Open Graph.
 - Відео Hero: 1280 × 720, без звуку, ≈ 0,6 МБ (було ≈ 20 МБ); підвантажується після події `load`, не запускається при «зменшити рух» та «економії трафіку».
 - Шрифти Google і CSS Swiper підвантажуються неблокуючи; крапки пагінації мають зону натискання 40 × 48 px.
+
+## ЛР №12: Tailwind без CDN
+- `cdn.tailwindcss.com` (Play CDN: ≈ 124 КБ JS, блокує рендер, збільшує TBT, ставить cookie) замінено локальним `css/tailwind.css` (≈ 4 КБ: preflight + використані утиліти). Підключено після `css/style.css`.
+- Якщо в розмітку додаються нові Tailwind-класи, файл можна перезібрати справжнім CLI: `npx tailwindcss@3.4.17 -c tailwind.config.js -i src/input.css -o css/tailwind.css --minify` (потрібен Node.js).
