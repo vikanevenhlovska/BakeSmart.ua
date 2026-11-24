@@ -133,6 +133,7 @@
           <ul class="need" id="step-need" aria-label="Потрібно для цього кроку"></ul>
           <p class="tip"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span id="step-tip"></span></p>
         </div>
+        <a class="link" id="step-calc" href="#calculator">Перерахувати цей рецепт під свою форму <svg class="ico" aria-hidden="true"><use href="#i-arrow-d"/></svg></a>
         <div class="step__nav">
           <button class="btn btn--ghost" type="button" id="prev"><svg class="ico" aria-hidden="true"><use href="#i-arrow-l"/></svg>Назад</button>
           <button class="btn" type="button" id="next">Далі<svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
@@ -146,11 +147,13 @@
       <div class="section__head">
         <span class="eyebrow"><svg class="ico" aria-hidden="true"><use href="#i-calc"/></svg>Калькулятор пропорцій та форм</span>
         <h2 id="h-calc">Інша форма? Точні пропорції.</h2>
-        <p>Змініть розмір чи тип форми або кількість порцій, і калькулятор перерахує інгредієнти. У рецепті він працює з готовим списком продуктів.</p>
+        <p>Оберіть рецепт, змініть розмір чи тип форми або кількість порцій, і калькулятор перерахує всі інгредієнти цього рецепта.</p>
       </div>
       <div class="calc">
         <div class="panel">
-          <p class="panel__title">Приклад: тісто для пирога (борошно 200 г, цукор 120 г, яйця 100 г)</p>
+          <label class="lbl" for="recipe" style="margin-bottom:6px">Рецепт
+            <select class="field" id="recipe"><option value="sharlotka">Яблучна шарлотка</option></select></label>
+          <p class="help" id="recipe-note" style="margin-bottom:16px"></p>
           <div class="modes" role="group" aria-label="Спосіб перерахунку">
             <button type="button" data-mode="shape" aria-pressed="true">За формою</button>
             <button type="button" data-mode="serv" aria-pressed="false">За порціями</button>
@@ -162,10 +165,14 @@
               <label class="lbl" for="a-type">Тип форми
                 <select class="field" id="a-type"><option value="round">Кругла</option><option value="square">Квадратна</option><option value="rect">Прямокутна</option></select></label>
               <div class="dims">
-                <label class="lbl wide" for="a-d" data-for="round">Діаметр, см<input class="field" id="a-d" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="20"></label>
-                <label class="lbl wide" for="a-s" data-for="square" hidden>Сторона, см<input class="field" id="a-s" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="20"></label>
-                <label class="lbl" for="a-l" data-for="rect" hidden>Довжина, см<input class="field" id="a-l" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="30"></label>
-                <label class="lbl" for="a-w" data-for="rect" hidden>Ширина, см<input class="field" id="a-w" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="20"></label>
+                <label class="lbl wide" for="a-d" data-for="round">Діаметр, см<input class="field" id="a-d" type="number" inputmode="decimal" min="5" max="80" step="0.5" required aria-describedby="a-d-err" value="20"></label>
+                <label class="lbl wide" for="a-s" data-for="square" hidden>Сторона, см<input class="field" id="a-s" type="number" inputmode="decimal" min="5" max="80" step="0.5" required aria-describedby="a-s-err" value="20"></label>
+                <label class="lbl" for="a-l" data-for="rect" hidden>Довжина, см<input class="field" id="a-l" type="number" inputmode="decimal" min="5" max="80" step="0.5" required aria-describedby="a-l-err" value="30"></label>
+                <label class="lbl" for="a-w" data-for="rect" hidden>Ширина, см<input class="field" id="a-w" type="number" inputmode="decimal" min="5" max="80" step="0.5" required aria-describedby="a-w-err" value="20"></label>
+              <p class="mt-1 hidden text-sm font-medium text-[color:var(--err)]" aria-live="polite" id="a-d-err" data-for="round"></p>
+              <p class="mt-1 hidden text-sm font-medium text-[color:var(--err)]" aria-live="polite" id="a-s-err" data-for="square" hidden></p>
+              <p class="mt-1 hidden text-sm font-medium text-[color:var(--err)]" aria-live="polite" id="a-l-err" data-for="rect" hidden></p>
+              <p class="mt-1 hidden text-sm font-medium text-[color:var(--err)]" aria-live="polite" id="a-w-err" data-for="rect" hidden></p>
               </div>
             </fieldset>
             <fieldset class="on" id="fs-b">
@@ -173,19 +180,23 @@
               <label class="lbl" for="b-type">Тип форми
                 <select class="field" id="b-type"><option value="round">Кругла</option><option value="square">Квадратна</option><option value="rect">Прямокутна</option></select></label>
               <div class="dims">
-                <label class="lbl wide" for="b-d" data-for="round">Діаметр, см<input class="field" id="b-d" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="24"></label>
-                <label class="lbl wide" for="b-s" data-for="square" hidden>Сторона, см<input class="field" id="b-s" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="24"></label>
-                <label class="lbl" for="b-l" data-for="rect" hidden>Довжина, см<input class="field" id="b-l" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="30"></label>
-                <label class="lbl" for="b-w" data-for="rect" hidden>Ширина, см<input class="field" id="b-w" type="number" inputmode="decimal" min="5" max="80" step="0.5" value="24"></label>
+                <label class="lbl wide" for="b-d" data-for="round">Діаметр, см<input class="field" id="b-d" type="number" inputmode="decimal" min="5" max="80" step="0.5" required aria-describedby="b-d-err" value="24"></label>
+                <label class="lbl wide" for="b-s" data-for="square" hidden>Сторона, см<input class="field" id="b-s" type="number" inputmode="decimal" min="5" max="80" step="0.5" required aria-describedby="b-s-err" value="24"></label>
+                <label class="lbl" for="b-l" data-for="rect" hidden>Довжина, см<input class="field" id="b-l" type="number" inputmode="decimal" min="5" max="80" step="0.5" required aria-describedby="b-l-err" value="30"></label>
+                <label class="lbl" for="b-w" data-for="rect" hidden>Ширина, см<input class="field" id="b-w" type="number" inputmode="decimal" min="5" max="80" step="0.5" required aria-describedby="b-w-err" value="24"></label>
+              <p class="mt-1 hidden text-sm font-medium text-[color:var(--err)]" aria-live="polite" id="b-d-err" data-for="round"></p>
+              <p class="mt-1 hidden text-sm font-medium text-[color:var(--err)]" aria-live="polite" id="b-s-err" data-for="square" hidden></p>
+              <p class="mt-1 hidden text-sm font-medium text-[color:var(--err)]" aria-live="polite" id="b-l-err" data-for="rect" hidden></p>
+              <p class="mt-1 hidden text-sm font-medium text-[color:var(--err)]" aria-live="polite" id="b-w-err" data-for="rect" hidden></p>
               </div>
             </fieldset>
           </div>
 
           <div class="forms" id="mode-serv" hidden>
             <fieldset class="on"><legend>У рецепті</legend>
-              <label class="lbl" for="s-a">Кількість порцій<input class="field" id="s-a" type="number" inputmode="numeric" min="1" max="100" step="1" value="8"></label></fieldset>
+              <label class="lbl" for="s-a">Кількість порцій<input class="field" id="s-a" type="number" inputmode="numeric" min="1" max="100" step="1" required aria-describedby="s-a-err" value="8"></label><p class="mt-1 hidden text-sm font-medium text-[color:var(--err)]" aria-live="polite" id="s-a-err"></p></fieldset>
             <fieldset class="on"><legend>Потрібно вам</legend>
-              <label class="lbl" for="s-b">Кількість порцій<input class="field" id="s-b" type="number" inputmode="numeric" min="1" max="100" step="1" value="12"></label></fieldset>
+              <label class="lbl" for="s-b">Кількість порцій<input class="field" id="s-b" type="number" inputmode="numeric" min="1" max="100" step="1" required aria-describedby="s-b-err" value="12"></label><p class="mt-1 hidden text-sm font-medium text-[color:var(--err)]" aria-live="polite" id="s-b-err"></p></fieldset>
           </div>
 
           <div class="errmsg" id="err" role="alert" hidden><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span id="err-t"></span></div>
@@ -193,8 +204,8 @@
         </div>
 
         <div class="panel result" aria-live="polite" id="result">
-          <h3 id="res-title">Для форми Ø 24 см</h3>
-          <div class="ratio" id="ratio">Коефіцієнт перерахунку: × 1,44</div>
+          <h3 id="res-title">Яблучна шарлотка: для круглої форми Ø 20 см</h3>
+          <div class="ratio" id="ratio">Коефіцієнт перерахунку: × 0,69</div>
           <div class="wide-scroll">
           <table class="tbl" aria-labelledby="res-title">
             <thead><tr><th scope="col">Інгредієнт</th><th scope="col">Було</th><th scope="col">Стало</th></tr></thead>
@@ -268,7 +279,7 @@
         <a class="gal__item" href="assets/images/sharlotka.jpg" data-fancybox="bakery-gallery" data-caption="Яблучна шарлотка">
           <img src="assets/images/sharlotka.jpg" alt="Яблучна шарлотка у формі на дерев’яному столі" width="860" height="506" loading="lazy">
         </a>
-        <a class="gal__item" href="assets/images/brauni.jpg" data-fancybox="bakery-gallery" data-caption="Шоколадний брауні">
+        <a class="gal__item" href="assets/images/brauni.jpg" data-fancybox="bakery-gallery" data-caption="Шоколадне брауні">
           <img src="assets/images/brauni.jpg" alt="Шматки шоколадного брауні на керамічній тарілці" width="860" height="506" loading="lazy">
         </a>
         <a class="gal__item" href="assets/images/bulochky.jpg" data-fancybox="bakery-gallery" data-caption="Булочки з корицею">
@@ -543,7 +554,7 @@
   /* ---------- recipes ---------- */
   var RECIPES=[
     {id:'sharlotka',name:'Яблучна шарлотка',desc:'Повітряний пиріг із простих інгредієнтів.',min:50,level:'Новачок',kind:'novice',img:'assets/images/sharlotka.jpg',alt:'Яблучна шарлотка у формі на дерев’яному столі',ing:['яйця','цукор','борошно','яблука']},
-    {id:'brauni',name:'Шоколадний брауні',desc:'Насичений смак і волога середина.',min:45,level:'Базовий рівень',kind:'mid',img:'assets/images/brauni.jpg',alt:'Шматки шоколадного брауні на керамічній тарілці',ing:['шоколад','масло','яйця','цукор','борошно']},
+    {id:'brauni',name:'Шоколадне брауні',desc:'Насичений смак і волога середина.',min:45,level:'Базовий рівень',kind:'mid',img:'assets/images/brauni.jpg',alt:'Шматки шоколадного брауні на керамічній тарілці',ing:['шоколад','масло','яйця','цукор','борошно']},
     {id:'bulochky',name:'Булочки з корицею',desc:'Дріжджове тісто з ароматною начинкою.',min:150,level:'Досвідчений',kind:'pro',img:'assets/images/bulochky.jpg',alt:'Булочки з корицею та глазур’ю на деці',ing:['борошно','молоко','дріжджі','цукор','масло','кориця','яйця']},
     {id:'pechyvo',name:'Мигдалеве печиво',desc:'Ніжне печиво з мигдалевою ноткою та цукровою пудрою.',min:35,level:'Новачок',kind:'novice',img:'assets/images/pechyvo.jpg',alt:'Мигдалеве печиво з пелюстками мигдалю на тарілці',ing:['борошно','масло','цукор','мигдаль','яйця']},
     {id:'focaccia',name:'Фокача з розмарином',desc:'Повітряний хліб з хрусткою скоринкою та оливковою олією.',min:120,level:'Базовий рівень',kind:'mid',img:'assets/images/focaccia.jpg',alt:'Фокача з розмарином та сіллю на деці',ing:['борошно','дріжджі','олія','розмарин','сіль']},
@@ -577,6 +588,8 @@
     var h=HINTS[state.filter],el=$('#hint');
     el.innerHTML='<strong>'+h.t+'</strong>'+(h.ul?'<ul>'+h.ul.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>':'<p>'+h.p+'</p>');
   }
+  /* повідомляє калькулятор (widget.js), який рецепт обрано */
+  function toCalc(id){document.dispatchEvent(new CustomEvent('bake:recipe',{detail:{id:id}}))}
   function renderRecipes(){
     var u=userCanon(),list=visible();
     if(state.searched){
@@ -597,7 +610,7 @@
         '<span class="badge">'+ico('check')+'Human-tested</span>'+match+
         '<div class="rc__go"><a href="#stepper" data-open="'+r.id+'" aria-label="Відкрити рецепт: '+r.name+'">Відкрити рецепт '+ico('arrow-r')+'</a><span class="rc__steps">'+ico('list')+'Крок за кроком</span></div></div></article>';
     }).join('');
-    $$('#grid a[data-open]').forEach(function(a){a.addEventListener('click',function(){curId=a.getAttribute('data-open');cur=1;renderStep()})});
+    $$('#grid a[data-open]').forEach(function(a){a.addEventListener('click',function(){curId=a.getAttribute('data-open');cur=1;renderStep();toCalc(curId)})});
     var more=$('#all-recipes');more.parentNode.hidden=state.searched||state.filter!=='all';
     $('#all-label').textContent=state.showAll?'Показати менше':'Усі рецепти';more.setAttribute('aria-expanded',String(state.showAll));
     var f=$('#found');
@@ -686,82 +699,14 @@
     $('#prev').hidden=cur===1;
     $('#next').innerHTML=(cur===S.length?'До рецептів':'Далі')+ico(cur===S.length?'list':'arrow-r');
   }
+  $('#step-calc').addEventListener('click',function(){toCalc(curId)});
   $('#prev').addEventListener('click',function(){if(cur>1){cur--;renderStep()}});
   $('#next').addEventListener('click',function(){
     if(cur<STEPS_BY[curId].length){cur++;renderStep()}
     else{cur=1;renderStep();$('#recipes').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'})}
   });
 
-  /* ---------- calculator ---------- */
-  var BASE=[{n:'Борошно',g:200},{n:'Цукор',g:120},{n:'Яйця',g:100,egg:true}];
-  var mode='shape';
-  function fmtN(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')}
-  function fmtR(r){return (Math.round(r*100)/100).toString().replace('.',',')}
-  function eggWord(n){var m=n%10,h=n%100;if(m===1&&h!==11)return 'яйце';if(m>=2&&m<=4&&(h<12||h>14))return 'яйця';return 'яєць'}
-  function num(id){var el=$('#'+id);var v=parseFloat(String(el.value).replace(',','.'));return v}
   function badField(id,bad){var el=$('#'+id);if(bad)el.setAttribute('aria-invalid','true');else el.removeAttribute('aria-invalid')}
-  function ok(v,max){return isFinite(v)&&v>=5&&v<=(max||80)}
-  function shape(p){
-    var t=$('#'+p+'-type').value,ids,vals,okAll=true,area,label;
-    if(t==='round'){ids=[p+'-d'];}
-    else if(t==='square'){ids=[p+'-s'];}
-    else {ids=[p+'-l',p+'-w'];}
-    vals=ids.map(num);
-    ids.forEach(function(id,i){var good=ok(vals[i]);badField(id,!good);if(!good)okAll=false});
-    ['d','s','l','w'].forEach(function(k){if(ids.indexOf(p+'-'+k)<0)badField(p+'-'+k,false)});
-    if(!okAll)return null;
-    var f=function(x){return fmtR(x)};
-    if(t==='round'){area=Math.PI*Math.pow(vals[0]/2,2);label='круглої форми Ø '+f(vals[0])+' см'}
-    else if(t==='square'){area=vals[0]*vals[0];label='квадратної форми '+f(vals[0])+' × '+f(vals[0])+' см'}
-    else {area=vals[0]*vals[1];label='прямокутної форми '+f(vals[0])+' × '+f(vals[1])+' см'}
-    return {area:area,label:label};
-  }
-  function toggleDims(p){
-    var t=$('#'+p+'-type').value;
-    $$('#fs-'+p+' [data-for]').forEach(function(l){l.hidden=l.getAttribute('data-for')!==t});
-  }
-  function calc(){
-    var ratio,title,errs=[];
-    if(mode==='shape'){
-      var A=shape('a'),B=shape('b');
-      if(!A||!B){errs.push('Введіть розміри форми від 5 до 80 см, щоб побачити результат.')}
-      else{ratio=B.area/A.area;title='Для '+B.label}
-    } else {
-      var a=num('s-a'),b=num('s-b'),ga=isFinite(a)&&a>=1&&a<=100,gb=isFinite(b)&&b>=1&&b<=100;
-      badField('s-a',!ga);badField('s-b',!gb);
-      if(!ga||!gb){errs.push('Кількість порцій має бути від 1 до 100.')}
-      else{ratio=b/a;title='Для '+Math.round(b)+' '+(Math.round(b)%10===1&&Math.round(b)%100!==11?'порції':'порцій')}
-    }
-    var err=$('#err');
-    if(errs.length){err.hidden=false;$('#err-t').textContent=errs[0];
-      $('#res-title').textContent='Перевірте дані';$('#ratio').textContent='Коефіцієнт перерахунку: –';
-      $('#tbody').innerHTML='<tr><td colspan="3" style="text-align:left;color:var(--ink-2)">Поки що немає чого рахувати.</td></tr>';$('#notes').innerHTML='';return}
-    err.hidden=true;
-    $('#res-title').textContent=title;
-    $('#ratio').textContent='Коефіцієнт перерахунку: × '+fmtR(ratio);
-    $('#tbody').innerHTML=BASE.map(function(it){
-      var g=Math.round(it.g*ratio),sub='';
-      if(it.egg){var pcs=Math.max(1,Math.round(g/50));sub='<small>без шкаралупи, ≈ '+pcs+' '+eggWord(pcs)+'</small>'}
-      return '<tr><th scope="row">'+it.n+sub+'</th><td>'+it.g+' г</td><td class="new">'+fmtN(g)+' г</td></tr>';
-    }).join('');
-    var n='';
-    if(ratio>2.5||ratio<0.4)n+='<p class="note">'+ico('alert')+'<span>Форми дуже різні за розміром (× '+fmtR(ratio)+'). Тісто може вийти надто тонким або надто товстим, тож подумайте про іншу форму.</span></p>';
-    n+='<p class="note">'+ico('clock')+'<span>Висота тіста змінюється разом із формою, тому час випікання перевіряйте окремо. Зазвичай у ширшій формі тісто тонше й пропікається швидше.</span></p>';
-    $('#notes').innerHTML=n;
-  }
-  ['a','b'].forEach(function(p){
-    $('#'+p+'-type').addEventListener('change',function(){toggleDims(p);calc()});
-    toggleDims(p);
-  });
-  $$('#calculator input.field').forEach(function(i){i.addEventListener('input',calc)});
-  $$('.modes button').forEach(function(b){
-    b.addEventListener('click',function(){
-      mode=b.getAttribute('data-mode');
-      $$('.modes button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
-      $('#mode-shape').hidden=mode!=='shape';$('#mode-serv').hidden=mode!=='serv';
-      calc();
-    });
-  });
 
   /* guide buttons: add product, run search, scroll to the catalog */
   $$('a[data-ing]').forEach(function(a){a.addEventListener('click',function(e){
@@ -798,7 +743,7 @@
   $('#logout').addEventListener('click',function(){store(null);showAcc();$('#acc-email').focus()});
   showAcc();
 
-  renderChips();renderHint();renderRecipes();renderStep();calc();
+  renderChips();renderHint();renderRecipes();renderStep();
 })();
 </script>
 <div class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 p-4" id="successModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalText">
@@ -810,6 +755,8 @@
   </div>
 </div>
 <script src="assets/js/validation.js" defer></script>
+<!-- ЛР №11: логіка інтерактивного віджета (калькулятор форм) -->
+<script src="assets/js/widget.js" defer></script>
 <script>
 (function(){
   var root=document.documentElement,btn=document.getElementById('theme-toggle');
