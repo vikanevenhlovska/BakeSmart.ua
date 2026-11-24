@@ -1,0 +1,47 @@
+name: CI/CD Production Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  check:
+    name: Перевірка коду
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Перевірка наявності обов'язкових файлів
+        run: |
+          for f in index.html css/style.css assets/js/widget.js assets/js/validation.js assets/js/plugins.js robots.txt sitemap.xml; do
+            test -f "$f" || { echo "Немає файлу: $f"; exit 1; }
+          done
+
+      - name: Перевірка синтаксису JavaScript
+        run: |
+          for f in assets/js/*.js; do
+            node --check "$f" || exit 1
+          done
+
+  deploy:
+    name: Деплой на Vercel
+    needs: check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prod --yes --token=${{ secrets.VERCEL_TOKEN }}

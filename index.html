@@ -3,18 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>BakeSmart.ua</title>
+<title>BakeSmart.ua: рецепти випічки та калькулятор форм</title>
 <meta name="description" content="BakeSmart.ua – українська платформа для випічки: рецепти, пошук за інгредієнтами та калькулятор форм.">
+<meta name="theme-color" content="#F7F1E8">
+<link rel="canonical" href="https://bakesmart-seven.vercel.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BakeSmart.ua">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:title" content="BakeSmart.ua: рецепти випічки та калькулятор форм">
+<meta property="og:description" content="Українська платформа для випічки: перевірені рецепти, пошук за інгредієнтами та калькулятор пропорцій для будь-якої форми.">
+<meta property="og:url" content="https://bakesmart-seven.vercel.app/">
+<meta property="og:image" content="https://bakesmart-seven.vercel.app/assets/images/hero.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <script>(function(){var t;try{t=localStorage.getItem('bs-theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})()</script>
 <link rel="icon" href="assets/images/logo-mark.svg">
-<link rel="preload" as="image" href="assets/images/hero.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="assets/images/hero-800.webp" type="image/webp" media="(max-width:800px)" fetchpriority="high">
+<link rel="preload" as="image" href="assets/images/hero.webp" type="image/webp" media="(min-width:801px)" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"></noscript>
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- ЛР №10: CSS плагінів через CDN (підключаються ДО власних стилів, щоб їх можна було перевизначити) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"></noscript>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -44,7 +58,7 @@
 
 <header class="header">
   <div class="wrap header__in">
-    <a class="logo" href="#top" aria-label="BakeSmart.ua, на початок сторінки"><img src="assets/images/logo-mark.svg" alt="" width="520" height="510" fetchpriority="high"><span class="logo__name">BakeSmart.ua</span></a>
+    <a class="logo" href="#top" aria-label="BakeSmart.ua, на початок сторінки"><img src="assets/images/logo-mark.svg" alt="" width="520" height="510"><span class="logo__name">BakeSmart.ua</span></a>
     <nav class="nav" id="nav" aria-label="Основна навігація">
       <a class="nav__link" href="#hero-search">Що є вдома?</a>
       <a class="nav__link" href="#recipes">Рецепти</a>
@@ -62,7 +76,7 @@
 <main id="main">
   <section class="hero" id="top" aria-labelledby="h1">
     <div class="hero__media" role="img" aria-label="Мисочка з борошном, з якого здіймається хмара борошна, поруч дерев'яні ложки та вінчик">
-      <video id="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/images/hero.jpg" aria-hidden="true" tabindex="-1"><source src="assets/video/video_content.mp4" type="video/mp4"></video>
+      <video id="hero-video" muted loop playsinline preload="none" width="1280" height="720" aria-hidden="true" tabindex="-1"><source data-src="assets/video/video_content.mp4" type="video/mp4"></video>
     </div>
     <div class="wrap hero__in">
       <div class="hero__copy">
@@ -225,21 +239,21 @@
       </div>
       <div class="guide__group" role="group" aria-labelledby="g-base"><h3 id="g-base">Базові продукти</h3>
         <div class="pgrid">
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Борошно пшеничне</h4></div><p class="pc__desc">Основа більшості тіст. Просійте перед змішуванням, і випічка буде повітрянішою.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Борошно">Знайти рецепти</a></article>
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Цукор</h4></div><p class="pc__desc">Дає солодкість і золотисту скоринку. Мед чи сироп не замінюють його 1:1.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Цукор">Знайти рецепти</a></article>
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Яйця</h4></div><p class="pc__desc">Зв’язують і розпушують тісто. Беріть кімнатної температури.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Яйця">Знайти рецепти</a></article>
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Вершкове масло</h4></div><p class="pc__desc">Для тіста беріть м’яке, для листкового й пісочного – холодне.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Вершкове">Знайти рецепти</a></article>
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Молоко</h4></div><p class="pc__desc">Тепле потрібне для дріжджового тіста, холодне – для кремів.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Молоко">Знайти рецепти</a></article>
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Дріжджі</h4></div><p class="pc__desc">Сухих потрібно приблизно втричі менше за вагою, ніж свіжих.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Дріжджі">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Борошно пшеничне</h4></div><p class="pc__desc">Основа більшості тіст. Просійте перед змішуванням, і випічка буде повітрянішою.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Борошно пшеничне" data-ing="Борошно">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Цукор</h4></div><p class="pc__desc">Дає солодкість і золотисту скоринку. Мед чи сироп не замінюють його 1:1.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Цукор" data-ing="Цукор">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Яйця</h4></div><p class="pc__desc">Зв’язують і розпушують тісто. Беріть кімнатної температури.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Яйця" data-ing="Яйця">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Вершкове масло</h4></div><p class="pc__desc">Для тіста беріть м’яке, для листкового й пісочного – холодне.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Вершкове масло" data-ing="Вершкове">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Молоко</h4></div><p class="pc__desc">Тепле потрібне для дріжджового тіста, холодне – для кремів.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Молоко" data-ing="Молоко">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><h4>Дріжджі</h4></div><p class="pc__desc">Сухих потрібно приблизно втричі менше за вагою, ніж свіжих.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Дріжджі" data-ing="Дріжджі">Знайти рецепти</a></article>
         </div></div>
       <div class="guide__group" role="group" aria-labelledby="g-alt"><h3 id="g-alt">Незвичні продукти</h3>
         <div class="pgrid">
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Мигдалеве борошно</h4></div><p class="pc__desc">Безглютенова основа для печива й коржів. Тісто виходить вологішим.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Мигдалеве">Знайти рецепти</a></article>
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Кокосовий цукор</h4></div><p class="pc__desc">Має карамельний відтінок і замінює звичайний цукор у пропорції 1:1.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Кокосовий">Знайти рецепти</a></article>
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Аквафаба</h4></div><p class="pc__desc">Рідина з-під нуту: 3 ст. ложки замінюють 1 яйце в зефірі й безе.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Аквафаба">Знайти рецепти</a></article>
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Рослинне молоко</h4></div><p class="pc__desc">Вівсяне чи мигдальне замінює коров’яче в пропорції 1:1.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Рослинне">Знайти рецепти</a></article>
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Еритритол</h4></div><p class="pc__desc">Не карамелізується, тому випічка блідіша. Дозування звіряйте з пакуванням.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Еритритол">Знайти рецепти</a></article>
-          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Льняне «яйце»</h4></div><p class="pc__desc">1 ст. ложка меленого льону та 3 ст. ложки води замінюють одне яйце.</p><a class="btn btn--ghost btn--sm" href="#recipes" data-ing="Льон">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Мигдалеве борошно</h4></div><p class="pc__desc">Безглютенова основа для печива й коржів. Тісто виходить вологішим.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Мигдалеве борошно" data-ing="Мигдалеве">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Кокосовий цукор</h4></div><p class="pc__desc">Має карамельний відтінок і замінює звичайний цукор у пропорції 1:1.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Кокосовий цукор" data-ing="Кокосовий">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Аквафаба</h4></div><p class="pc__desc">Рідина з-під нуту: 3 ст. ложки замінюють 1 яйце в зефірі й безе.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Аквафаба" data-ing="Аквафаба">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Рослинне молоко</h4></div><p class="pc__desc">Вівсяне чи мигдальне замінює коров’яче в пропорції 1:1.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Рослинне молоко" data-ing="Рослинне">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Еритритол</h4></div><p class="pc__desc">Не карамелізується, тому випічка блідіша. Дозування звіряйте з пакуванням.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Еритритол" data-ing="Еритритол">Знайти рецепти</a></article>
+          <article class="pc"><div class="pc__top"><span class="pc__ico"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span><h4>Льняне «яйце»</h4></div><p class="pc__desc">1 ст. ложка меленого льону та 3 ст. ложки води замінюють одне яйце.</p><a class="btn btn--ghost btn--sm" href="#recipes" aria-label="Знайти рецепти: Льняне «яйце»" data-ing="Льон">Знайти рецепти</a></article>
         </div></div>
       <div class="guide__group" role="group" aria-labelledby="g-rep"><h3 id="g-rep">Чим замінити</h3>
         <label class="lbl swaps__search" for="swap-q">Чого немає вдома?<input class="field" id="swap-q" type="search" placeholder="Наприклад: яйце, масло, дріжджі" autocomplete="off" aria-controls="swap-list"></label><ul class="swaps" id="swap-list"><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Яйце (1 шт.)</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Лляне «яйце»</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>1 ст. л. меленого льону + 3 ст. л. води, 5 хв набухає</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Молоко</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Рослинне молоко</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>Пропорція 1:1</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Вершкове масло</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Рослинна олія</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>≈ ¾ від ваги масла</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Кефір, кисле молоко</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Молоко + лимонний сік</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>1 склянка молока + 1 ст. л. соку, 5 хв</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Свіжі дріжджі</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Сухі дріжджі</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>≈ ⅓ від ваги свіжих</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Цукор</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Кокосовий цукор</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>1:1, колір буде темнішим</span></p></li><li class="swap"><div class="swap__row"><span class="swap__from"><small>Немає</small>Яєчний білок (безе)</span><span class="swap__arrow"><svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span><span class="swap__to"><small>Чим замінити</small>Аквафаба</span></div><p class="swap__prop"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><span>2 ст. л. замінюють 1 білок</span></p></li></ul><p class="empty" id="swap-empty" role="status" hidden>Такого продукту в таблиці замін поки немає.</p></div>
@@ -276,23 +290,23 @@
         <p>Натисніть на фото, щоб відкрити його на весь екран. Зображення можна збільшувати та гортати.</p>
       </div>
       <div class="gal">
-        <a class="gal__item" href="assets/images/sharlotka.jpg" data-fancybox="bakery-gallery" data-caption="Яблучна шарлотка">
-          <img src="assets/images/sharlotka.jpg" alt="Яблучна шарлотка у формі на дерев’яному столі" width="860" height="506" loading="lazy">
+        <a class="gal__item" href="assets/images/sharlotka-large.webp" data-fancybox="bakery-gallery" data-caption="Яблучна шарлотка">
+          <img src="assets/images/sharlotka.webp" alt="Яблучна шарлотка у формі на дерев’яному столі" width="860" height="506" loading="lazy" decoding="async">
         </a>
-        <a class="gal__item" href="assets/images/brauni.jpg" data-fancybox="bakery-gallery" data-caption="Шоколадне брауні">
-          <img src="assets/images/brauni.jpg" alt="Шматки шоколадного брауні на керамічній тарілці" width="860" height="506" loading="lazy">
+        <a class="gal__item" href="assets/images/brauni-large.webp" data-fancybox="bakery-gallery" data-caption="Шоколадне брауні">
+          <img src="assets/images/brauni.webp" alt="Шматки шоколадного брауні на керамічній тарілці" width="860" height="506" loading="lazy" decoding="async">
         </a>
-        <a class="gal__item" href="assets/images/bulochky.jpg" data-fancybox="bakery-gallery" data-caption="Булочки з корицею">
-          <img src="assets/images/bulochky.jpg" alt="Булочки з корицею та глазур’ю на деці" width="860" height="506" loading="lazy">
+        <a class="gal__item" href="assets/images/bulochky-large.webp" data-fancybox="bakery-gallery" data-caption="Булочки з корицею">
+          <img src="assets/images/bulochky.webp" alt="Булочки з корицею та глазур’ю на деці" width="860" height="506" loading="lazy" decoding="async">
         </a>
-        <a class="gal__item" href="assets/images/pechyvo.jpg" data-fancybox="bakery-gallery" data-caption="Мигдалеве печиво">
-          <img src="assets/images/pechyvo.jpg" alt="Мигдалеве печиво з пелюстками мигдалю на тарілці" width="860" height="506" loading="lazy">
+        <a class="gal__item" href="assets/images/pechyvo-large.webp" data-fancybox="bakery-gallery" data-caption="Мигдалеве печиво">
+          <img src="assets/images/pechyvo.webp" alt="Мигдалеве печиво з пелюстками мигдалю на тарілці" width="860" height="506" loading="lazy" decoding="async">
         </a>
-        <a class="gal__item" href="assets/images/focaccia.jpg" data-fancybox="bakery-gallery" data-caption="Фокача з розмарином">
-          <img src="assets/images/focaccia.jpg" alt="Фокача з розмарином та сіллю на деці" width="860" height="506" loading="lazy">
+        <a class="gal__item" href="assets/images/focaccia-large.webp" data-fancybox="bakery-gallery" data-caption="Фокача з розмарином">
+          <img src="assets/images/focaccia.webp" alt="Фокача з розмарином та сіллю на деці" width="860" height="506" loading="lazy" decoding="async">
         </a>
-        <a class="gal__item" href="assets/images/cheesecake.jpg" data-fancybox="bakery-gallery" data-caption="Сирний чізкейк">
-          <img src="assets/images/cheesecake.jpg" alt="Шматок чізкейка з ягідним соусом і м’ятою" width="860" height="506" loading="lazy">
+        <a class="gal__item" href="assets/images/cheesecake-large.webp" data-fancybox="bakery-gallery" data-caption="Сирний чізкейк">
+          <img src="assets/images/cheesecake.webp" alt="Шматок чізкейка з ягідним соусом і м’ятою" width="860" height="506" loading="lazy" decoding="async">
         </a>
       </div>
     </div>
@@ -379,7 +393,7 @@
       </div>
       <!-- Відео YouTube: адаптивність через .embed--video { aspect-ratio:16/9 } у css/style.css -->
       <figure class="embed embed--video">
-        <iframe src="https://www.youtube.com/embed/a-0Bmozyvbc" title="Відеорецепт яблучної шарлотки" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <iframe src="https://www.youtube-nocookie.com/embed/a-0Bmozyvbc" title="Відеорецепт яблучної шарлотки" loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         <figcaption>Відео відтворюється з YouTube.</figcaption>
       </figure>
     </div>
@@ -553,12 +567,12 @@
 
   /* ---------- recipes ---------- */
   var RECIPES=[
-    {id:'sharlotka',name:'Яблучна шарлотка',desc:'Повітряний пиріг із простих інгредієнтів.',min:50,level:'Новачок',kind:'novice',img:'assets/images/sharlotka.jpg',alt:'Яблучна шарлотка у формі на дерев’яному столі',ing:['яйця','цукор','борошно','яблука']},
-    {id:'brauni',name:'Шоколадне брауні',desc:'Насичений смак і волога середина.',min:45,level:'Базовий рівень',kind:'mid',img:'assets/images/brauni.jpg',alt:'Шматки шоколадного брауні на керамічній тарілці',ing:['шоколад','масло','яйця','цукор','борошно']},
-    {id:'bulochky',name:'Булочки з корицею',desc:'Дріжджове тісто з ароматною начинкою.',min:150,level:'Досвідчений',kind:'pro',img:'assets/images/bulochky.jpg',alt:'Булочки з корицею та глазур’ю на деці',ing:['борошно','молоко','дріжджі','цукор','масло','кориця','яйця']},
-    {id:'pechyvo',name:'Мигдалеве печиво',desc:'Ніжне печиво з мигдалевою ноткою та цукровою пудрою.',min:35,level:'Новачок',kind:'novice',img:'assets/images/pechyvo.jpg',alt:'Мигдалеве печиво з пелюстками мигдалю на тарілці',ing:['борошно','масло','цукор','мигдаль','яйця']},
-    {id:'focaccia',name:'Фокача з розмарином',desc:'Повітряний хліб з хрусткою скоринкою та оливковою олією.',min:120,level:'Базовий рівень',kind:'mid',img:'assets/images/focaccia.jpg',alt:'Фокача з розмарином та сіллю на деці',ing:['борошно','дріжджі','олія','розмарин','сіль']},
-    {id:'cheesecake',name:'Сирний чізкейк',desc:'Кремова текстура та пісочна основа з ягідним соусом.',min:90,level:'Досвідчений',kind:'pro',img:'assets/images/cheesecake.jpg',alt:'Шматок чізкейка з ягідним соусом і м’ятою',ing:['сир','яйця','цукор','масло','борошно']}
+    {id:'sharlotka',name:'Яблучна шарлотка',desc:'Повітряний пиріг із простих інгредієнтів.',min:50,level:'Новачок',kind:'novice',img:'assets/images/sharlotka.webp',alt:'Яблучна шарлотка у формі на дерев’яному столі',ing:['яйця','цукор','борошно','яблука']},
+    {id:'brauni',name:'Шоколадне брауні',desc:'Насичений смак і волога середина.',min:45,level:'Базовий рівень',kind:'mid',img:'assets/images/brauni.webp',alt:'Шматки шоколадного брауні на керамічній тарілці',ing:['шоколад','масло','яйця','цукор','борошно']},
+    {id:'bulochky',name:'Булочки з корицею',desc:'Дріжджове тісто з ароматною начинкою.',min:150,level:'Досвідчений',kind:'pro',img:'assets/images/bulochky.webp',alt:'Булочки з корицею та глазур’ю на деці',ing:['борошно','молоко','дріжджі','цукор','масло','кориця','яйця']},
+    {id:'pechyvo',name:'Мигдалеве печиво',desc:'Ніжне печиво з мигдалевою ноткою та цукровою пудрою.',min:35,level:'Новачок',kind:'novice',img:'assets/images/pechyvo.webp',alt:'Мигдалеве печиво з пелюстками мигдалю на тарілці',ing:['борошно','масло','цукор','мигдаль','яйця']},
+    {id:'focaccia',name:'Фокача з розмарином',desc:'Повітряний хліб з хрусткою скоринкою та оливковою олією.',min:120,level:'Базовий рівень',kind:'mid',img:'assets/images/focaccia.webp',alt:'Фокача з розмарином та сіллю на деці',ing:['борошно','дріжджі','олія','розмарин','сіль']},
+    {id:'cheesecake',name:'Сирний чізкейк',desc:'Кремова текстура та пісочна основа з ягідним соусом.',min:90,level:'Досвідчений',kind:'pro',img:'assets/images/cheesecake.webp',alt:'Шматок чізкейка з ягідним соусом і м’ятою',ing:['сир','яйця','цукор','масло','борошно']}
   ];
   var ALIAS={'мигдаль':['мигда'],'сир':['сир'],'олія':['олі'],'розмарин':['розмар'],'сіль':['сіл'],'борошно':['борош'],'яйця':['яйц','яєц','яйк'],'молоко':['молок'],'цукор':['цукор','цукр'],'масло':['масл'],'яблука':['яблу','яблук'],'шоколад':['шокол'],'дріжджі':['дріж'],'кориця':['кориц']};
   function canon(t){t=t.toLowerCase();for(var k in ALIAS){for(var i=0;i<ALIAS[k].length;i++){if(t.indexOf(ALIAS[k][i])===0)return k}}return null}
@@ -769,14 +783,23 @@
   });
   sync();
   var v=document.getElementById('hero-video');
-  if(v&&window.matchMedia('(prefers-reduced-motion:reduce)').matches){v.removeAttribute('autoplay');v.pause()}
+  /* відео в Hero підвантажується після завантаження сторінки (не конкурує з LCP), не вмикається при «зменшити рух» і «економії трафіку» */
+  var conn=navigator.connection||{};
+  if(v&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches&&!conn.saveData){
+    window.addEventListener('load',function(){
+      var s=v.querySelector('source[data-src]');
+      if(!s)return;
+      s.src=s.getAttribute('data-src');v.load();
+      var p=v.play();if(p&&p.catch)p.catch(function(){});
+    });
+  }
 })();
 </script>
 
 <!-- ЛР №10: JS плагінів через CDN (в кінці body) та ініціалізація -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-<script src="assets/js/plugins.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+<script src="assets/js/plugins.js" defer></script>
 </body>
 </html>

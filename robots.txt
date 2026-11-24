@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bakesmart-seven.vercel.app/sitemap.xml

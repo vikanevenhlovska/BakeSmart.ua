@@ -33,6 +33,7 @@ Project for web design and development lab course featuring baking calculator an
 ## Параметри, що впливають на результат
 | Параметр | Елемент | Значення | Вплив |
 |---|---|---|---|
+| Рецепт | `select` | 6 рецептів | інгредієнти, форма й кількість порцій з рецепта, алергени |
 | Режим | кнопки `.modes` | за формою / за порціями | спосіб розрахунку коефіцієнта |
 | Тип форми (рецепт і ваша) | `select` | кругла / квадратна / прямокутна | формула площі |
 | Розміри форми | `input number` | 5–80 см, крок 0,5 | площа → коефіцієнт |
@@ -45,3 +46,17 @@ Project for web design and development lab course featuring baking calculator an
 2. JavaScript: `readNumber()` відсікає порожнє значення, текст, `NaN`, `Infinity`; `inRange()` перевіряє діапазон; дробові порції округлюються до цілих; невідоме значення `select` скидається до «Кругла»; весь розрахунок у `try/catch`; якщо потрібного DOM-елемента немає, віджет вимикається з попередженням у консоль.
 3. Безпечний вивід: результат формується через `textContent` / `createElement`, без `innerHTML`.
 4. UI: помилка під полем (`aria-describedby`, `aria-invalid`), червона рамка `!border-red-500` (Tailwind), підсумкове повідомлення в `#err`.
+
+
+# ЛР №12: аудит, оптимізація та CI/CD
+
+- **Performance:** `defer` для скриптів Swiper, Fancybox, Typed.js і `plugins.js`; CSS Fancybox підвантажується неблокуючи; `preload="metadata"` для відео в Hero; прибрано `fetchpriority="high"` з логотипа (пріоритет мають Hero-зображення); кешування статики через `vercel.json`.
+- **Accessibility:** елементи керування мінімум 48 × 48 px; контраст зірок відгуків ≥ 4,5:1; унікальні `aria-label` для 12 посилань «Знайти рецепти».
+- **SEO:** змістовний `<title>`, `canonical`, Open Graph, `twitter:card`, `theme-color`, `robots.txt`, `sitemap.xml`.
+- **Best Practices:** відео YouTube через `youtube-nocookie.com`; заголовки безпеки у `vercel.json`.
+- **CI/CD:** `.github/workflows/deploy.yml` (перевірка файлів і синтаксису JS, далі деплой на Vercel). Потрібні секрети репозиторію: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
+
+## ЛР №12: оптимізація зображень і відео
+- Фото рецептів: WebP 860 × 506 для карток і 1600 px для Fancybox (`*-large.webp`); Hero: `hero.webp` (1440) і `hero-800.webp` (мобільні); `hero.jpg` лишився лише для Open Graph.
+- Відео Hero: 1280 × 720, без звуку, ≈ 0,6 МБ (було ≈ 20 МБ); підвантажується після події `load`, не запускається при «зменшити рух» та «економії трафіку».
+- Шрифти Google і CSS Swiper підвантажуються неблокуючи; крапки пагінації мають зону натискання 40 × 48 px.
