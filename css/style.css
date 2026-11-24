@@ -81,7 +81,7 @@ button,input,select{font:inherit;color:inherit}
 
 /* hero */
 .hero{position:relative;display:flex;align-items:center;min-height:clamp(680px,56.6vw,900px);overflow:hidden}
-.hero__media{position:absolute;inset:0;background:var(--brown-d) url(../assets/images/hero.jpg) center/cover no-repeat}
+.hero__media{position:absolute;inset:0;background:var(--brown-d) url(../assets/images/hero.webp) center/cover no-repeat}
 .hero__media::after{content:"";position:absolute;inset:0}
 .hero__in{position:relative;width:100%;padding-block:56px}
 .hero__copy{max-width:600px;display:flex;flex-direction:column;gap:22px}
@@ -450,3 +450,29 @@ main [id],footer [id]{scroll-margin-top:96px}
 .reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{top:auto;bottom:0;margin:0;width:44px;height:44px;border-radius:50%;background:var(--card);box-shadow:var(--shadow)}
 .reviews-swiper .swiper-button-prev{left:calc(50% - 110px)}
 .reviews-swiper .swiper-button-next{right:calc(50% - 110px)}
+
+/* ===== ЛР №12: доступність (мін. 48 px для елементів керування, контраст зірок) ===== */
+.nav a.nav__link,.filter,.chip,.btn--sm,.link,.modes button,.rc__go a,.pgrid .pc .btn,.footer li a,.footer__bottom a{min-height:48px}
+.theme-toggle{width:48px;height:48px}
+.chips{min-height:48px}
+.chip button{width:48px;height:48px}
+.rev__stars{color:#9A5F00}
+[data-theme="dark"] .rev__stars{color:#C98A1B}
+
+/* ===== ЛР №12 (продовження): оптимізація Hero та цілі натискання ===== */
+@media (max-width:800px){.hero__media{background-image:url(../assets/images/hero-800.webp)}}
+/* крапки пагінації слайдера: зона натискання 40 × 48 px, видима крапка 10 px */
+.reviews-swiper .swiper-pagination{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}
+.reviews-swiper .swiper-pagination-bullet{position:relative;width:40px;height:48px;margin:0!important;border-radius:0;background:transparent;opacity:1}
+.reviews-swiper .swiper-pagination-bullet::before{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--ink-2);opacity:.45}
+.reviews-swiper .swiper-pagination-bullet-active{background:transparent}
+.reviews-swiper .swiper-pagination-bullet-active::before{background:var(--brown);opacity:1}
+.reviews-swiper .swiper-pagination{bottom:0}
+.reviews-swiper{padding-bottom:84px}
+.reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{width:48px;height:48px;bottom:48px}
+.reviews-swiper .swiper-button-prev{left:calc(50% - 150px)}
+.reviews-swiper .swiper-button-next{right:calc(50% - 150px)}
+/* відстань між сусідніми цілями: перелік чипів, фільтрів і посилань підвалу */
+.filters{gap:12px}.chips{gap:10px}
+.footer li+li{margin-top:4px}
+.gal__item,.rc__go a,.pgrid .pc .btn{min-height:48px}
