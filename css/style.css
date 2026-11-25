@@ -81,7 +81,7 @@ button,input,select{font:inherit;color:inherit}
 
 /* hero */
 .hero{position:relative;display:flex;align-items:center;min-height:clamp(680px,56.6vw,900px);overflow:hidden}
-.hero__media{position:absolute;inset:0;background:var(--brown-d) url(../assets/images/hero.webp) center/cover no-repeat}
+.hero__media{position:absolute;inset:0;background:var(--brown-d)}
 .hero__media::after{content:"";position:absolute;inset:0}
 .hero__in{position:relative;width:100%;padding-block:56px}
 .hero__copy{max-width:600px;display:flex;flex-direction:column;gap:22px}
@@ -460,7 +460,9 @@ main [id],footer [id]{scroll-margin-top:96px}
 [data-theme="dark"] .rev__stars{color:#C98A1B}
 
 /* ===== ЛР №12 (продовження): оптимізація Hero та цілі натискання ===== */
-@media (max-width:800px){.hero__media{background-image:url(../assets/images/hero-800.webp)}}
+/* Hero-картинка тепер <img> у HTML (швидше знаходиться браузером), а не CSS-фон */
+.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% center}
+[data-theme="dark"] .hero__img{filter:brightness(.85)}
 /* крапки пагінації слайдера: зона натискання 40 × 48 px, видима крапка 10 px */
 .reviews-swiper .swiper-pagination{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}
 .reviews-swiper .swiper-pagination-bullet{position:relative;width:40px;height:48px;margin:0!important;border-radius:0;background:transparent;opacity:1}
@@ -476,3 +478,8 @@ main [id],footer [id]{scroll-margin-top:96px}
 .filters{gap:12px}.chips{gap:10px}
 .footer li+li{margin-top:4px}
 .gal__item,.rc__go a,.pgrid .pc .btn{min-height:48px}
+
+/* ЛР №12: Hero-картинка (LCP) і відкладений рендер нижніх секцій */
+.hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% center}
+.hero__media picture{display:block}
+#steps,#calculator,#guide,#verify,#gallery,#reviews,#video,#location,#about,#account,#legal,#feedback{content-visibility:auto;contain-intrinsic-size:auto 700px}

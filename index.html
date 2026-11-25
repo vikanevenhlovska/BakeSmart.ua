@@ -17,17 +17,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <script>(function(){var t;try{t=localStorage.getItem('bs-theme')}catch(e){}if(t!=='dark'&&t!=='light')t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})()</script>
 <link rel="icon" href="assets/images/logo-mark.svg">
-<link rel="preload" as="image" href="assets/images/hero-800.webp" type="image/webp" media="(max-width:800px)" fetchpriority="high">
-<link rel="preload" as="image" href="assets/images/hero.webp" type="image/webp" media="(min-width:801px)" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"></noscript>
-<!-- ЛР №10: CSS плагінів через CDN (підключаються ДО власних стилів, щоб їх можна було перевизначити) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"></noscript>
 <link rel="stylesheet" href="css/style.css">
 <!-- ЛР №12: локальна збірка Tailwind замість Play CDN (після style.css, як і раніше) -->
 <link rel="stylesheet" href="css/tailwind.css">
@@ -77,6 +70,10 @@
 <main id="main">
   <section class="hero" id="top" aria-labelledby="h1">
     <div class="hero__media" role="img" aria-label="Мисочка з борошном, з якого здіймається хмара борошна, поруч дерев'яні ложки та вінчик">
+      <picture>
+        <source media="(max-width:800px)" srcset="assets/images/hero-800.webp" type="image/webp">
+        <img class="hero__img" src="assets/images/hero.webp" alt="" width="1440" height="815" fetchpriority="high" decoding="async">
+      </picture>
       <video id="hero-video" muted loop playsinline preload="none" width="1280" height="720" aria-hidden="true" tabindex="-1"><source data-src="assets/video/video_content.mp4" type="video/mp4"></video>
     </div>
     <div class="wrap hero__in">
@@ -787,20 +784,23 @@
   /* відео в Hero підвантажується після завантаження сторінки (не конкурує з LCP), не вмикається при «зменшити рух» і «економії трафіку» */
   var conn=navigator.connection||{};
   if(v&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches&&!conn.saveData){
-    window.addEventListener('load',function(){
+    var started=false;
+    function startVideo(){
+      if(started)return;started=true;
+      ['scroll','pointerdown','keydown','touchstart'].forEach(function(n){window.removeEventListener(n,startVideo)});
       var s=v.querySelector('source[data-src]');
       if(!s)return;
       s.src=s.getAttribute('data-src');v.load();
       var p=v.play();if(p&&p.catch)p.catch(function(){});
-    });
+    }
+    /* відео стартує після першої взаємодії або через 8 с після load, щоб його перший кадр не ставав LCP-елементом */
+    ['scroll','pointerdown','keydown','touchstart'].forEach(function(n){window.addEventListener(n,startVideo,{passive:true,once:true})});
+    window.addEventListener('load',function(){setTimeout(startVideo,8000)});
   }
 })();
 </script>
 
-<!-- ЛР №10: JS плагінів через CDN (в кінці body) та ініціалізація -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+<!-- ЛР №10/12: CDN-бібліотеки (Swiper, Fancybox, Typed.js) підвантажує assets/js/plugins.js, коли вони потрібні -->
 <script src="assets/js/plugins.js" defer></script>
 </body>
 </html>
