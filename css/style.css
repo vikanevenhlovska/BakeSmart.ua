@@ -501,3 +501,7 @@ main [id],footer [id]{scroll-margin-top:96px}
 .reviews-swiper.swiper .swiper-pagination-bullet{width:28px;height:48px}
 .reviews-swiper.swiper .swiper-button-prev{left:calc(50% - 150px)}
 .reviews-swiper.swiper .swiper-button-next{right:calc(50% - 150px)}
+
+/* Typed.js змінює текст кожні ~50 мс: ізоляція, щоб перерахунок стилів і розкладки не зачіпав решту сторінки */
+.hero__typed{contain:layout style}
+.hero__typed #typed-text{display:inline-block;min-height:1.5em}
