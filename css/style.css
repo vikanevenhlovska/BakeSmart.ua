@@ -432,7 +432,7 @@ main [id],footer [id]{scroll-margin-top:96px}
 .gal__item img{width:100%;height:auto;aspect-ratio:17/10;object-fit:cover;transition:transform .3s}
 .gal__item:hover img{transform:scale(1.04)}
 
-.reviews-swiper{--swiper-theme-color:var(--brown);--swiper-navigation-size:20px;padding:4px 4px 64px}
+.reviews-swiper{--swiper-theme-color:var(--brown);--swiper-navigation-size:20px;padding:4px 4px 16px}
 .reviews-swiper .swiper-slide{height:auto}
 /* проти FOUC: до ініціалізації слайди стоять в один ряд і не розтягують сторінку */
 .reviews-swiper:not(.swiper-initialized) .swiper-wrapper{display:flex;overflow:hidden}
@@ -444,12 +444,6 @@ main [id],footer [id]{scroll-margin-top:96px}
 .rev figcaption strong{display:block;color:var(--brown-d)}
 .rev__role{display:block;font-size:.875rem;color:var(--ink-2)}
 .rev__ava{display:grid;place-items:center;flex:none;width:44px;height:44px;border-radius:50%;background:var(--sage-bg);color:var(--sage-ink);font-weight:700;font-size:.9rem}
-.reviews-swiper .swiper-pagination{bottom:12px}
-.reviews-swiper .swiper-pagination-bullet{width:10px;height:10px;background:var(--ink-2);opacity:.45}
-.reviews-swiper .swiper-pagination-bullet-active{background:var(--brown);opacity:1}
-.reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{top:auto;bottom:0;margin:0;width:44px;height:44px;border-radius:50%;background:var(--card);box-shadow:var(--shadow)}
-.reviews-swiper .swiper-button-prev{left:calc(50% - 110px)}
-.reviews-swiper .swiper-button-next{right:calc(50% - 110px)}
 
 /* ===== ЛР №12: доступність (мін. 48 px для елементів керування, контраст зірок) ===== */
 .nav a.nav__link,.filter,.chip,.btn--sm,.link,.modes button,.rc__go a,.pgrid .pc .btn,.footer li a,.footer__bottom a{min-height:48px}
@@ -464,16 +458,6 @@ main [id],footer [id]{scroll-margin-top:96px}
 .hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% center}
 [data-theme="dark"] .hero__img{filter:brightness(.85)}
 /* крапки пагінації слайдера: зона натискання 40 × 48 px, видима крапка 10 px */
-.reviews-swiper .swiper-pagination{display:flex;justify-content:center;align-items:center;flex-wrap:wrap}
-.reviews-swiper .swiper-pagination-bullet{position:relative;width:40px;height:48px;margin:0!important;border-radius:0;background:transparent;opacity:1}
-.reviews-swiper .swiper-pagination-bullet::before{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--ink-2);opacity:.45}
-.reviews-swiper .swiper-pagination-bullet-active{background:transparent}
-.reviews-swiper .swiper-pagination-bullet-active::before{background:var(--brown);opacity:1}
-.reviews-swiper .swiper-pagination{bottom:0}
-.reviews-swiper{padding-bottom:84px}
-.reviews-swiper .swiper-button-prev,.reviews-swiper .swiper-button-next{width:48px;height:48px;bottom:48px}
-.reviews-swiper .swiper-button-prev{left:calc(50% - 150px)}
-.reviews-swiper .swiper-button-next{right:calc(50% - 150px)}
 /* відстань між сусідніми цілями: перелік чипів, фільтрів і посилань підвалу */
 .filters{gap:12px}.chips{gap:10px}
 .footer li+li{margin-top:4px}
@@ -492,16 +476,17 @@ main [id],footer [id]{scroll-margin-top:96px}
 .ferr{color:var(--err);font-size:.875rem}
 .fhint{color:var(--ink-2);font-size:.875rem}
 
-/* Swiper підвантажується пізніше за style.css і скидає padding (.swiper{padding:0}), тому специфічність вища: місце під стрілки й крапки */
-.reviews-swiper.swiper{padding:4px 4px 84px}
-.reviews-swiper.swiper{padding-bottom:80px}
-.reviews-swiper.swiper .swiper-button-prev,.reviews-swiper.swiper .swiper-button-next{bottom:0;top:auto}
-.reviews-swiper.swiper .swiper-pagination{bottom:0}
-/* крапки компактніші (зона натискання 28 × 48 px), стрілки стоять по боках в одному ряду */
-.reviews-swiper.swiper .swiper-pagination-bullet{width:28px;height:48px}
-.reviews-swiper.swiper .swiper-button-prev{left:calc(50% - 150px)}
-.reviews-swiper.swiper .swiper-button-next{right:calc(50% - 150px)}
 
 /* Typed.js змінює текст кожні ~50 мс: ізоляція, щоб перерахунок стилів і розкладки не зачіпав решту сторінки */
 .hero__typed{contain:layout style}
 .hero__typed #typed-text{display:inline-block;min-height:1.5em}
+
+/* Керування слайдером відгуків: звичайний рядок під слайдами (без position:absolute) */
+.reviews-swiper.swiper{padding:4px 4px 16px}
+.rev-nav{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:8px;--swiper-theme-color:var(--brown);--swiper-navigation-size:20px}
+.rev-nav .swiper-button-prev,.rev-nav .swiper-button-next{position:static;margin:0;flex:0 0 auto;width:48px;height:48px;border-radius:50%;background:var(--card);color:var(--brown);box-shadow:var(--shadow)}
+.rev-nav .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal{position:static;width:auto;transform:none;display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+.rev-nav .swiper-pagination-bullet{position:relative;width:28px;height:48px;margin:0!important;border-radius:0;background:transparent;opacity:1}
+.rev-nav .swiper-pagination-bullet::before{content:"";position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--ink-2);opacity:.45}
+.rev-nav .swiper-pagination-bullet-active::before{background:var(--brown);opacity:1}
+.rev-nav .swiper-button-prev:focus-visible,.rev-nav .swiper-button-next:focus-visible,.rev-nav .swiper-pagination-bullet:focus-visible{outline:3px solid var(--focus);outline-offset:3px}

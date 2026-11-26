@@ -53,10 +53,10 @@
           // "наведення" після дотику залишало автопрокрутку зупиненою
           pauseOnMouseEnter: window.matchMedia('(hover: hover)').matches
         },
-        pagination: { el: '.reviews-swiper .swiper-pagination', clickable: true },
+        pagination: { el: '.rev-nav .swiper-pagination', clickable: true },
         navigation: {
-          nextEl: '.reviews-swiper .swiper-button-next',
-          prevEl: '.reviews-swiper .swiper-button-prev'
+          nextEl: '.rev-nav .swiper-button-next',
+          prevEl: '.rev-nav .swiper-button-prev'
         },
         a11y: {
           prevSlideMessage: 'Попередній відгук',
