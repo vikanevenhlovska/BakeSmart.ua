@@ -21,9 +21,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"></noscript>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=3">
 <!-- ЛР №12: локальна збірка Tailwind замість Play CDN (після style.css, як і раніше) -->
-<link rel="stylesheet" href="css/tailwind.css">
+<link rel="stylesheet" href="css/tailwind.css?v=3">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -769,9 +769,9 @@
     <button class="btn mt-5" type="button" id="modalClose">Закрити</button>
   </div>
 </div>
-<script src="assets/js/validation.js" defer></script>
+<script src="assets/js/validation.js?v=3" defer></script>
 <!-- ЛР №11: логіка інтерактивного віджета (калькулятор форм) -->
-<script src="assets/js/widget.js" defer></script>
+<script src="assets/js/widget.js?v=3" defer></script>
 <script>
 (function(){
   var root=document.documentElement,btn=document.getElementById('theme-toggle');
@@ -804,6 +804,6 @@
 </script>
 
 <!-- ЛР №10/12: CDN-бібліотеки (Swiper, Fancybox, Typed.js) підвантажує assets/js/plugins.js, коли вони потрібні -->
-<script src="assets/js/plugins.js?v=2" defer></script>
+<script src="assets/js/plugins.js?v=3" defer></script>
 </body>
 </html>
